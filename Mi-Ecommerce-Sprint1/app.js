@@ -1,19 +1,20 @@
-//Traigo la Heramienta
-const express = require ('express');
+//--- IMPORTACIÓN DE MÓDULOS ---
+const express = require ('express'); //Traigo la Heramienta
+const app = express (); //La pongo en función
 
-//La pongo en función
-const index = express ();
+//--- CONFIGURACIÓN DEL SERVIDOR ---
+app.set ('view engine', 'ejs');
+app.use(express.static('assets'));
 
-const port = 3000;
-
-index.set ('view engine', 'ejs');
-
-//Configuramos la ruta raíz
+//--- DEFINICIÓN DE RUTAS (USER STORY #2) ---
 index.get ('/', (req, res) => {res.render("pages/index");
 });
 
-//Mensaje en terminal "Ya estoy Funcinando"
+//Acá abajo deberiamos definir las rutas que faltan.
+
+//--- PUESTA EN MARCHA ---
+const port = 3000; //Encender el servidor
 index.listen (port, () => {
-    console.log('Aplicación funcionando en el puerto ${port}!');
+    console.log('Aplicación funcionando en el puerto ${port}!'); //Mensaje en terminal "Ya estoy Funcinando"
 });
 
