@@ -7,14 +7,13 @@ app.set ('view engine', 'ejs');
 app.use(express.static('assets'));
 
 //--- DEFINICIÓN DE RUTAS (USER STORY #2) ---
-index.get ('/', (req, res) => {res.render("pages/index");
+app.get ('/', (req, res) => {res.render("pages/index");
 });
 
 //Acá abajo deberiamos definir las rutas que faltan.
 
 //--- PUESTA EN MARCHA ---
-const port = 3000; //Encender el servidor
-index.listen (port, () => {
-    console.log('Aplicación funcionando en el puerto ${port}!'); //Mensaje en terminal "Ya estoy Funcinando"
+app.listen(3000, () => { //Encender servidor
+    console.log("Servidor corriendo en http://localhost:3000"); //mje en terminal: "Servidor funcionando en: http://localhost:3000"
 });
 
