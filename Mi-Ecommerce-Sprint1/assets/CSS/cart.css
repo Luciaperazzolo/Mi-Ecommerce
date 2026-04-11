@@ -1,0 +1,233 @@
+body{
+  font-family: Arial, sans-serif;
+  background: #e2e1e1f8; 
+  margin: 0; 
+  padding: 0;
+}
+
+/*--ENCABEZADO--*/
+.main-header {
+    background: #fff;
+    display: flex;
+    justify-content: space-between; /*Distribuye los elementos: uno al inicio, otro al centro y otro al final*/
+    align-items: center; /*Centra verticalmente los elementos del header*/
+    padding: 15px 5%; /*Relleno de 15px arriba/abajo y 5% a los laterales*/
+    border-bottom: none;
+}
+.search-bar {
+    max-width: 700px; /*Ancho máximo de la barra de búsqueda*/
+    flex: 1; /*Permite que la barra crezca para ocupar el espacio disponible*/
+    margin: 0 40px; /*Separación lateral respecto al logo y los iconos*/
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+}
+/*Estilo del logo*/
+.logo {
+  font-size: 24px;
+  font-weight: bold; /*Letra en negrita*/
+  color: rgb(80, 165, 180);
+}
+/*Parte específica del logo (segunda palabra)*/
+.logo span {
+  color: rgb(79, 189, 199); 
+}
+
+/*--CARRITO Y USUARIO--*/
+.header-icons {
+  display: flex; /*Alinea los iconos en fila*/
+  align-items: center;
+  gap: 25px; /*Espacio entre cada icono*/
+}
+/*Contenedor del icono del carrito*/
+.cart-wrapper {
+    position: relative; /*Para que la burbuja roja se posicione respecto a este contenedor*/
+    font-size: 22px; 
+    cursor: pointer;
+}
+/*Imagen del icono del carrito*/
+.cart-icon-img {
+    width: 25px; 
+    height: auto;
+    display: block;
+}
+/*Burbuja roja de notificación*/
+.cart-badge {
+  position: absolute; /*Se despega del flujo normal para ubicarse con top/right*/
+  top: -8px; /*Mueve la burbuja un poco hacia arriba*/      
+  right: -10px; /*Mueve la burbuja un poco hacia la derecha*/
+  background-color: #e63946;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-profile {
+    display: flex;
+    align-items: center; 
+    gap: 8px; /*Espacio entre el icono de usuario y el nombre*/          
+    cursor: pointer;
+}
+/*Imagen o icono dentro del perfil*/
+.user-profile i, .user-profile img {
+    font-size: 24px; 
+    border-radius: 50%; 
+}
+
+/*--ENLACE VOLVER Y ENLACE IR A PAGAR--*/
+.link-volver, .btn-primary {
+    text-decoration: none;
+}
+
+/*--BARRA SUPERIOR DEL CARRITO--*/
+.cart-nav {
+    display: block; 
+    background: transparent; 
+    padding: 20px 5%; /*Espaciado interno*/
+    max-width: 1000px; /*Ancho máximo alineado con el contenido*/
+    margin: 0 auto; /*Centra el contenedor horizontalmente*/
+}
+.cart-nav h2 {
+    margin: 10px 0; /*Margen arriba y abajo del título*/
+    color: #333;
+    font-size: 22px;
+}
+.link-volver {
+    color: #333 !important; /*Fuerza el color gris oscuro*/
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 5px; /*Espacio entre la flecha y el texto "Volver"*/
+}
+
+/*--CONTENEDOR DE CARRITO DE PRODUCTOS--*/
+.cart-container{
+    max-width: 1000px; 
+    margin: 20px auto; /*Centra el bloque y da espacio arriba/abajo*/
+    background: #e2e1e1f8;
+    padding: 20px; 
+    border-radius: 8px;
+}
+
+/*--CADA PRODUCTO--*/
+.item{
+    background: #fff;
+    display: flex; /*Alinea imagen, info y controles en fila*/
+    align-items: center; /*Centra todo verticalmente*/
+    justify-content: space-between; /*Empuja los controles a la derecha*/
+    margin-bottom: 15px; /*Espacio entre un producto y otro*/
+    padding: 10px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+/*Imagen del producto*/
+.item-img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover; /*Recorta la imagen para que llene el cuadro sin deformarse*/
+    margin-right: 15px;
+}
+.item button{
+    background-color: #545454;
+    border-radius: 10px;
+    margin: 0 5px; 
+    padding: 5px 10px; 
+    cursor: pointer; 
+}
+/*Texto del producto*/
+.item-info span{
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+}
+/*Controles de cantidad*/
+.item-controls{
+    background: #fff;
+    color: white;
+    margin-left: auto; /*Empuja este bloque totalmente a la derecha*/
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.item-controls button{
+    color: black;
+    background: #ddd;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+/*Número de la cantidad*/
+.item-controls span{
+    background: #fff;
+    color:black;
+    font-weight: bold;
+}
+
+/*--BOTÓN DE PAGAR Y TOTAL A PAGAR--*/
+.cart-footer {
+    display: flex;
+    flex-direction: column; /*Alinea los elementos uno debajo del otro*/
+    align-items: flex-end; /*Alinea el total y el botón a la derecha*/
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.cart-footer p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+/*Botón principal de "Pagar"*/
+.btn-primary {
+    background: #545454; 
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background 0.3s; /*Animación suave al cambiar el color*/
+}
+/*Efecto al pasar el mouse por el botón*/
+.btn-primary:hover {
+    background: #333;
+    opacity: 1;
+}
+
+/*--FOOTER--*/
+.site-footer {
+    background: #e2e1e1f8;
+    display: flex;
+    justify-content: space-between; /*Separa texto legal, redes y apps*/
+    align-items: center;
+    padding: 20px 5%;
+    border-top: 1px solid #e2e1e1f8; /*Línea divisoria muy sutil*/
+}
+.site-footer p {
+    margin: 0; 
+    font-size: 12px;
+    color: #888; /*Color gris suave para el copyright*/
+}
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+.social-icons a:hover {
+  color: #00bcd4;         
+}
+.app-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+/*Iconos de redes y tiendas*/
+.store-icon, .social-icons img {
+    width: 18px; 
+    height: auto;
+    filter: grayscale(1); /*Pone los iconos en blanco y negro*/
+    opacity: 0.6; /*Los hace un poco transparentes*/
+}
