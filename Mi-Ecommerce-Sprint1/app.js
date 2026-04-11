@@ -16,8 +16,7 @@ app.get ('/cart', (req, res) => {res.render ('pages/cart');
 //Acá abajo deberiamos definir las rutas que faltan.
 
 //--- PUESTA EN MARCHA ---
-const port = 3000; //Encender el servidor
-app.listen (port, () => {
-    console.log(`Aplicación funcionando en el puerto ${port}!`); //Mensaje en terminal "Ya estoy Funcinando"
+app.listen(3000, () => { //Encender servidor
+    console.log("Servidor corriendo en http://localhost:3000"); //mje en terminal: "Servidor funcionando en: http://localhost:3000"
 });
 
