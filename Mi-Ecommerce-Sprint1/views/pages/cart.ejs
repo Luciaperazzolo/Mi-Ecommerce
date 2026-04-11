@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mi Carrito - MiEcommerce</title>
+        <link rel="stylesheet" href="/CSS/cart.css">
+    </head>
+    <body>
+        <!--ENCABEZADO CON LOGO Y BUSCADOR-->
+        <header class="main-header">
+            <h1 class="logo">Mi<span>Ecommerce</span></h1>
+            <input type="text" placeholder="Buscar productos..." class="search-bar">
+            
+            <!-- Iconos de usuario y carrito -->
+            <div class="header-icons">
+                <div class="cart-wrapper">
+                    <img src="/Imagenes-footer/shopping-cart.png" alt="Carrito" class="cart-icon-img">
+                    <i class="fas fa-shopping-cart"></i><span class="cart-badge">3</span>
+                </div>
+                <div class="user-profile">
+                    <img src="/Imagenes-footer/user.png" alt="Perfil" class="cart-icon-img">
+                    <span>Usuario</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="cart-nav"> <!--Agrupa los elementos de la parte de arriba.-->
+                <a href="/" class="link-volver"><i class="fas fa-chevron-left"></i> Volver</a>
+                <h2>Productos en tu Carrito</h2>
+        </section>
+
+        <!--LISTA DE PRODUCTOS AGREGADOS AL CARRO-->
+        <main class="cart-container"> <!--Es para que en css se le pueda dar un ancho y centrar todo el carrito en la pantalla.-->
+            <!--PRIMER PRODUCTO-->
+            <section class="cart-list"> <!--Contenedor que guardará todos los productos que el usuario agregue.-->
+                <article class="item"> <!--Cada producto es una unidad de información independiente.-->
+                    <img src="/Imagenes-productos/Jack Daniels.jpg" alt="producto" class="item-img">
+                    <div class="item-info"> <!--Es una caja para agrupar el nombre y los botones.-->
+                        <span>Jack Daniel's Tennessee Honey</span>
+                    </div>
+                    <div class="item-controls"><!--Agrupa todos los botones de acción. class="btn-remove" class="qty-btn" class="qty-btn"-->
+                            <button type="button" aria-label="Eliminar Producto">Quitar</button>
+                            <button type="button" aria-label="Disminuir cantidad">-</button>
+                            <span>1</span>
+                            <button type="button" aria-label="Aumentar cantidad">+</button>
+                            <span>19.900</span>
+                    </div>
+                </article>
+            </section>
+            <!--SEGUNDO PRODUCTO-->
+            <section class="cart-list"> <!--Contenedor que guardará todos los productos que el usuario agregue.-->
+                <article class="item"> <!--Cada producto es una unidad de información independiente.-->
+                    <img src="/Imagenes-productos/combo-hamburguesa.png" alt="producto" class="item-img">
+                    <div class="item-info"> <!--Es una caja para agrupar el nombre y los botones.-->
+                        <span>1 Combo Hamburguesa</span>
+                    </div>
+                    <div class="item-controls"><!--Agrupa todos los botones de acción. class="btn-remove" class="qty-btn" class="qty-btn"-->
+                            <button type="button">Quitar</button>
+                            <button type="button">-</button>
+                            <span>1</span>
+                            <button type="button">+</button>
+                            <span>5.000</span>
+                    </div>
+                </article>
+            </section>
+            <!--TERCER PRODUCTO-->
+            <section class="cart-list"> <!--Contenedor que guardará todos los productos que el usuario agregue.-->
+                <article class="item"> <!--Cada producto es una unidad de información independiente.-->
+                    <img src="/Imagenes-productos/lata-cocacola.png" alt="producto" class="item-img">
+                    <div class="item-info"> <!--Es una caja para agrupar el nombre y los botones.-->
+                        <span>Coca Cola lata 220ml Pack Original x8</span>
+                    </div>
+                    <div class="item-controls"><!--Agrupa todos los botones de acción. class="btn-remove" class="qty-btn" class="qty-btn"-->
+                            <button type="button">Quitar</button>
+                            <button type="button">-</button>
+                            <span>1</span>
+                            <button type="button">+</button>
+                            <span>1.520</span>
+                    </div>
+                </article>
+            </section>
+        </main>
+            <!--TOTAL A PAGAR Y BOTÓN DE PAGAR-->
+            <section class="cart-footer"><!--Agrupa la parte final de la página.-->
+                <p>Total de Puntos: <strong>26.420</strong></p>
+                <a href="/checkout" class="btn-primary">Ir a Pagar</a>
+            </section>
+
+            <hr>
+            <!--FOOTER-->
+            <footer class="site-footer">
+                <!--ENLACES A REDES SOCIALES-->
+                <div class="social-icons">
+                    <a href="https://twitter.com" target="_blank">
+                        <img src="/Imagenes-footer/twitter.png" alt="Twitter" class="icon">
+                    </a>
+                    <a href="https://facebook.com" target="_blank">
+                         <img src="/Imagenes-footer/facebook.png" alt="Facebook" class="icon">
+                    </a>
+                    <a href="https://instagram.com" target="_blank">
+                        <img src="/Imagenes-footer/instagram.png" alt="Instagram" class="icon">
+                    </a>
+                    <a href="https://youtube.com" target="_blank">
+                        <img src="/Imagenes-footer/youtube.png" alt="YouTube" class="icon">
+                    </a>
+                </div>
+
+                <p>© MiEcommerce. Todos los derechos reservados.</p>
+                <!--ENLACES A TIENDAS DE APP-->
+                <div class="app-links">
+                    <a href="https://www.apple.com/es/store">
+                        <img src="/Imagenes-footer/apple.png" alt="App Store" class="store-icon">
+                    </a>  
+                    <a href="https://play.google.com">
+                        <img src="/Imagenes-footer/google-play.png" alt="Google Play" class="store-icon">
+                    </a>
+                </div>
+            </footer>
+
+    </body>
+</html>
