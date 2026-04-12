@@ -1,0 +1,84 @@
+/* HEADER (Contenedor principal de la cabecera) */
+.main-header {
+    background: #fff; /* Color de fondo blanco */
+    display: flex; /* Activa el modo caja flexible para alinear elementos en línea */
+    justify-content: space-between; /* Separa el logo, buscador e iconos a los extremos */
+    align-items: center; /* Centra los elementos verticalmente */
+    padding: 15px 5%; /* Espaciado interno (arriba/abajo y lados) */
+    border-bottom: none; /* Sin borde inferior */
+}
+
+/* LOGO */
+.logo {
+  font-size: 24px; /* Tamaño de la letra */
+  font-weight: bold; /* Grosor de la letra (negrita) */
+  color: rgb(80, 165, 180); /* Color azul/verdoso principal */
+}
+
+/* Parte específica del logo (segunda palabra) */
+.logo span {
+  color: rgb(79, 189, 199); /* Un tono de azul ligeramente distinto para resaltar */
+}
+
+/* BUSCADOR */
+.search-bar {
+    max-width: 700px; /* Limita qué tan ancha puede ser la barra */
+    flex: 1; /* Hace que el buscador use el espacio sobrante en el centro */
+    margin: 0 40px; /* Margen horizontal para no pegarse al logo ni a los iconos */
+    padding: 8px 15px; /* Espacio interno para que el texto no toque los bordes */
+    border: 1px solid #ccc; /* Línea de borde gris suave */
+    border-radius: 20px; /* Bordes redondeados (forma de píldora) */
+    background-color: #f9f9f9; /* Fondo gris casi blanco */
+}
+
+/* ICONOS (Contenedor de carrito y usuario) */
+.header-icons {
+  display: flex; /* Alinea los iconos uno al lado del otro */
+  align-items: center; /* Los centra verticalmente entre sí */
+  gap: 25px; /* Espacio de separación entre cada icono */
+}
+
+/* Contenedor del carrito para posicionar la notificación */
+.cart-wrapper {
+    position: relative; /* Permite que la burbuja roja se ubique respecto a este contenedor */
+    font-size: 22px;
+    cursor: pointer; /* Cambia el cursor a "mano" al pasar el mouse */
+}
+
+/* Imagen del icono del carrito */
+.cart-icon-img {
+    width: 25px; /* Tamaño fijo de ancho */
+    height: auto; /* Mantiene la proporción de la imagen */
+    display: block;
+}
+
+/* Burbuja roja de notificación (ej. cantidad de productos) */
+.cart-badge {
+  position: absolute; /* Se coloca libremente sobre el icono del carrito */
+  top: -8px; /* Lo sube un poco */
+  right: -10px; /* Lo mueve a la derecha */
+  background-color: #e63946; /* Color rojo de alerta */
+  color: white; /* Texto blanco */
+  font-size: 10px;
+  font-weight: bold;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%; /* Lo hace un círculo perfecto */
+  display: flex; /* Para centrar el número dentro del círculo */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Perfil de usuario */
+.user-profile {
+    display: flex; /* Alinea la foto y el texto en línea */
+    align-items: center; 
+    gap: 8px; /* Separación entre la foto y el nombre */
+    cursor: pointer;
+}
+
+/* Foto del perfil de usuario */
+.user-profile img {
+    font-size: 24px; 
+    border-radius: 50%; /* Hace la foto circular */
+}
