@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     background: #e2e1e1f8; 
@@ -12,24 +13,86 @@ body {
 }
 
 /* 
-    HEADER Y FOOTER */
-.main-header, .site-footer {
+HEADER  */
+.main-header {
+    background: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 5%;
-    background-color: #fff;
+    padding: 15px 5%;
+    border-bottom: none;
 }
 
-/* Control de iconos  */
-.cart-icon-img, .user-profile img, .header-icons img, header img,
-.social-icons img, .app-links img, .site-footer img, footer img {
-    width: 25px !important;
-    height: auto !important;
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(80, 165, 180);
+}
+
+.logo span {
+    color: rgb(79, 189, 199);
+}
+
+.search-bar {
+    max-width: 700px;
+    flex: 1;
+    margin: 0 40px;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.cart-wrapper {
+    position: relative;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.cart-icon-img {
+    width: 25px;
+    height: auto;
+    display: block;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #e63946;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.user-profile img {
+    width: 30px; /* Ajuste para que se vea bien la foto circular */
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 /* 
-   3. SECCIÓN PRODUCTO PRINCIPAL  */
+SECCIÓN PRODUCTO  */
 .breadcrumb {
     margin-bottom: 15px;
 }
@@ -118,8 +181,8 @@ body {
     color: #666;
 }
 
-/* 
-   4. SECCIÓN RELACIONADOS */
+/*  CATEGORÍAS 
+  */
 .relacionados h3 {
     color: #333;
     font-size: 18px;
@@ -151,7 +214,7 @@ body {
 
 .cuerpo-tarjeta {
     display: flex;
-    justify-content: space-between; /* Nombre a la izq, precio a la der */
+    justify-content: space-between;
     align-items: flex-start;
 }
 
@@ -177,9 +240,6 @@ body {
     color: #999;
 }
 
-/* 
-   5. BARRA DE CATEGORÍAS
-   */
 .barra-categorias-oscura {
     background: #333;
     display: flex;
@@ -197,9 +257,50 @@ body {
 }
 
 .item-cat img {
-    width: 24px !important;
+    width: 24px;
     filter: invert(1);
     display: block;
     margin: 0 auto 5px;
     cursor : pointer;
+}
+
+/* 
+    FOOTER 
+   */
+.site-footer {
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    border-top: 1px solid #bbb;
+    margin-top: 40px; /* Separación extra arriba */
+}
+
+.site-footer p {
+    margin: 0; 
+    font-size: 12px;
+    color: #888;
+}
+
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icons a:hover {
+  color: #00bcd4;          
+}
+
+.app-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.store-icon, .social-icons img {
+    width: 18px; 
+    height: auto;
+    filter: grayscale(1);
+    opacity: 0.6;
 }
