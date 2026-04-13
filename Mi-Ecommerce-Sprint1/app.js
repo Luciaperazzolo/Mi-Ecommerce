@@ -12,6 +12,10 @@ app.get ('/index', (req, res) => {res.render("pages/index");
 
 app.get ('/cart', (req, res) => {res.render ('pages/cart');
 });
+app.get('/product', (req, res) => {
+    res.render("pages/product");
+});
+
 
 //Acá abajo deberiamos definir las rutas que faltan.
 
