@@ -1,14 +1,38 @@
-/* HEADER (Contenedor principal de la cabecera) */
+/*HEADER (Contenedor principal de la cabecera)*/
 .main-header {
-    background: #fff; /* Color de fondo blanco */
-    display: flex; /* Activa el modo caja flexible para alinear elementos en línea */
-    justify-content: space-between; /* Separa el logo, buscador e iconos a los extremos */
-    align-items: center; /* Centra los elementos verticalmente */
-    padding: 15px 5%; /* Espaciado interno (arriba/abajo y lados) */
-    border-bottom: none; /* Sin borde inferior */
+    font-family: Arial, sans-serif;
+    background: #fff;
+    display: flex;
+    justify-content: space-between; /*Distribuye los elementos: uno al inicio, otro al centro y otro al final*/
+    align-items: center; /*Centra verticalmente los elementos del header*/
+    padding: 15px 5%; /*Relleno de 15px arriba/abajo y 5% a los laterales*/
+    border-bottom: none;
+}
+/*--BARRA DE BÚSQUEDA--*/
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative; /*Para posicionar la lupa adentro*/
+    flex: 1; 
+    max-width: 700px;
+    margin: 0 40px;
+}
+.search-bar {
+    width: 100%; /*Ocupa todo el ancho del contenedor*/
+    padding: 8px 40px 8px 15px; /*Agregamos 40px a la derecha para que el texto no pise la lupa*/
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    outline: none; /*Quita el borde azul por defecto al hacer click*/
+}
+.search-icon {
+    position: absolute;
+    right: 15px; /* La separa del borde derecho */
+    color: #888;
+    pointer-events: none; /* Si el usuario hace click en la lupa, el foco va al input */
 }
 
-/* LOGO */
+/*--ESTILO DEL LOGO--*/
 .logo {
   font-size: 24px; /* Tamaño de la letra */
   font-weight: bold; /* Grosor de la letra (negrita) */
@@ -20,29 +44,18 @@
   color: rgb(79, 189, 199); /* Un tono de azul ligeramente distinto para resaltar */
 }
 
-/* BUSCADOR */
-.search-bar {
-    max-width: 700px; /* Limita qué tan ancha puede ser la barra */
-    flex: 1; /* Hace que el buscador use el espacio sobrante en el centro */
-    margin: 0 40px; /* Margen horizontal para no pegarse al logo ni a los iconos */
-    padding: 8px 15px; /* Espacio interno para que el texto no toque los bordes */
-    border: 1px solid #ccc; /* Línea de borde gris suave */
-    border-radius: 20px; /* Bordes redondeados (forma de píldora) */
-    background-color: #f9f9f9; /* Fondo gris casi blanco */
-}
-
-/* ICONOS (Contenedor de carrito y usuario) */
+/*--CARRITO Y USUARIO--*/
 .header-icons {
-  display: flex; /* Alinea los iconos uno al lado del otro */
-  align-items: center; /* Los centra verticalmente entre sí */
-  gap: 25px; /* Espacio de separación entre cada icono */
+  display: flex; /*Alinea los iconos en fila*/
+  align-items: center;
+  gap: 25px; /*Espacio entre cada icono*/
 }
 
 /* Contenedor del carrito para posicionar la notificación */
 .cart-wrapper {
-    position: relative; /* Permite que la burbuja roja se ubique respecto a este contenedor */
-    font-size: 22px;
-    cursor: pointer; /* Cambia el cursor a "mano" al pasar el mouse */
+  position: relative; /*Para que la burbuja roja se posicione respecto a este contenedor*/
+  font-size: 22px; 
+  cursor: pointer;
 }
 
 /* Imagen del icono del carrito */
@@ -52,33 +65,31 @@
     display: block;
 }
 
-/* Burbuja roja de notificación (ej. cantidad de productos) */
+/*Burbuja roja de notificación*/
 .cart-badge {
-  position: absolute; /* Se coloca libremente sobre el icono del carrito */
-  top: -8px; /* Lo sube un poco */
-  right: -10px; /* Lo mueve a la derecha */
-  background-color: #e63946; /* Color rojo de alerta */
-  color: white; /* Texto blanco */
+  position: absolute; /*Se despega del flujo normal para ubicarse con top/right*/
+  top: -8px; /*Mueve la burbuja un poco hacia arriba*/      
+  right: -10px; /*Mueve la burbuja un poco hacia la derecha*/
+  background-color: #e63946;
+  color: white;
   font-size: 10px;
   font-weight: bold;
   height: 16px;
   width: 16px;
-  border-radius: 50%; /* Lo hace un círculo perfecto */
-  display: flex; /* Para centrar el número dentro del círculo */
+  border-radius: 50%; 
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* Perfil de usuario */
+/*Icono del Usuario*/
 .user-profile {
-    display: flex; /* Alinea la foto y el texto en línea */
-    align-items: center; 
-    gap: 8px; /* Separación entre la foto y el nombre */
+    display: flex;
+    align-items: center;
+    gap: 8px; /*Crea un espacio automático entre el icono y el texto*/
     cursor: pointer;
 }
-
-/* Foto del perfil de usuario */
-.user-profile img {
-    font-size: 24px; 
-    border-radius: 50%; /* Hace la foto circular */
+.user-icon {
+    font-size: 1.2rem; /*Ajusta el tamaño del icono*/
+    color: #333;
 }

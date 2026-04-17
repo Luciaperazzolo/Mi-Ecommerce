@@ -1,0 +1,13 @@
+/*El html y body ocupen todo el alto*/
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-direction: column; /*Alinea los elementos uno debajo de otro*/
+    min-height: 100vh; /*Ocupa el 100% del alto de la ventana del navegador*/
+}
+.content-wrapper {
+    flex: 1; /*Esto hace que el contenedor crezca y empuje al footer al fondo*/
+}

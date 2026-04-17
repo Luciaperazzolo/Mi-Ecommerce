@@ -14,16 +14,30 @@ body{
     padding: 15px 5%; /*Relleno de 15px arriba/abajo y 5% a los laterales*/
     border-bottom: none;
 }
+/*--BARRA DE BÚSQUEDA--*/
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative; /*Para posicionar la lupa adentro*/
+    flex: 1; 
+    max-width: 700px;
+    margin: 0 40px;
+}
 .search-bar {
-    max-width: 700px; /*Ancho máximo de la barra de búsqueda*/
-    flex: 1; /*Permite que la barra crezca para ocupar el espacio disponible*/
-    margin: 0 40px; /*Separación lateral respecto al logo y los iconos*/
-    padding: 8px 15px;
+    width: 100%; /*Ocupa todo el ancho del contenedor*/
+    padding: 8px 40px 8px 15px; /*Agregamos 40px a la derecha para que el texto no pise la lupa*/
     border: 1px solid #ccc;
     border-radius: 20px;
     background-color: #f9f9f9;
+    outline: none; /*Quita el borde azul por defecto al hacer click*/
 }
-/*Estilo del logo*/
+.search-icon {
+    position: absolute;
+    right: 15px; /* La separa del borde derecho */
+    color: #888;
+    pointer-events: none; /* Si el usuario hace click en la lupa, el foco va al input */
+}
+/*--ESTILO DEL LOGO--*/
 .logo {
   font-size: 24px;
   font-weight: bold; /*Letra en negrita*/
@@ -68,16 +82,16 @@ body{
   justify-content: center;
   align-items: center;
 }
+/*Icono del Usuario*/
 .user-profile {
     display: flex;
-    align-items: center; 
-    gap: 8px; /*Espacio entre el icono de usuario y el nombre*/          
+    align-items: center;
+    gap: 8px; /*Crea un espacio automático entre el icono y el texto*/
     cursor: pointer;
 }
-/*Imagen o icono dentro del perfil*/
-.user-profile i, .user-profile img {
-    font-size: 24px; 
-    border-radius: 50%; 
+.user-icon {
+    font-size: 1.2rem; /*Ajusta el tamaño del icono*/
+    color: #333;
 }
 
 /*--ENLACE VOLVER Y ENLACE IR A PAGAR--*/

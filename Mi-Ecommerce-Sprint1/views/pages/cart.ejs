@@ -4,29 +4,32 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Mi Carrito - MiEcommerce</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <link rel="stylesheet" href="/CSS/cart.css">
     </head>
     <body>
         <!--ENCABEZADO CON LOGO Y BUSCADOR-->
         <header class="main-header">
             <h1 class="logo">Mi<span>Ecommerce</span></h1>
-            <input type="text" placeholder="Buscar productos..." class="search-bar">
+            <div class="search-container">
+                <input type="text" placeholder="Buscar productos..." class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+            </div>
             
             <!-- Iconos de usuario y carrito -->
             <div class="header-icons">
                 <div class="cart-wrapper">
-                    <img src="/Imagenes-footer/shopping-cart.png" alt="Carrito" class="cart-icon-img">
                     <i class="fas fa-shopping-cart"></i><span class="cart-badge">3</span>
                 </div>
                 <div class="user-profile">
-                    <img src="/Imagenes-footer/user.png" alt="Perfil" class="cart-icon-img">
+                    <i class="fas fa-user user-icon"></i>
                     <span>Usuario</span>
                 </div>
             </div>
         </header>
 
         <section class="cart-nav"> <!--Agrupa los elementos de la parte de arriba.-->
-                <a href="/" class="link-volver"><i class="fas fa-chevron-left"></i> Volver</a>
+                <a href="/index" class="link-volver"><i class="fas fa-chevron-left"></i>Volver a Inicio</a>
                 <h2>Productos en tu Carrito</h2>
         </section>
 
