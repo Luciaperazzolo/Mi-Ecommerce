@@ -93,3 +93,18 @@
     font-size: 1.2rem; /*Ajusta el tamaño del icono*/
     color: #333;
 }
+
+/*SECCION PRODUCTOS*/
+/* Estilo para el texto "productos" en el encabezado */
+.link-productos-header {
+    text-decoration: none;   /* Quita el subrayado azul */
+    color: #333;             
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+/* Efecto al pasar el mouse */
+.link-productos-header:hover {
+    color: rgb(80, 165, 180); /* Cambia al color de tu logo */
+}
