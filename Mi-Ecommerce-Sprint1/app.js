@@ -7,7 +7,8 @@ app.set ('view engine', 'ejs');
 app.use(express.static(__dirname +'/assets'));
 
 //--- DEFINICIÓN DE RUTAS (USER STORY #2) ---
-app.get ('/index', (req, res) => {res.render("pages/index");
+
+app.get('/', (req, res) => {res.render('pages/index');
 });
 app.get ('/cart', (req, res) => {res.render ('pages/cart');
 });
