@@ -22,6 +22,11 @@ app.use(express.static(path.join(__dirname, "assets"))); // Habilito la carpeta 
 app.use("/", mainRoutes);  
 // Todas las rutas principales ahora se manejan desde mainRoutes.js 
 
+//--- ERROR 404 ---
+app.use((req, res) => {
+    res.status(404).render("pages/404");
+});
+
 //--- PUESTA EN MARCHA ---
 app.listen(3000, () => { // Encender servidor
     console.log("Servidor corriendo en http://localhost:3000");
