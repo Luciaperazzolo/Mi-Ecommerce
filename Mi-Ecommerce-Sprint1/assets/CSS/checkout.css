@@ -1,13 +1,133 @@
-/*El html y body ocupen todo el alto*/
-html, body {
-    height: 100%;
-    margin: 0;
+/* Reemplazo para checkout.css */
+
+:root {
+    --primary-teal: #50a5b4; /* El color de tu marca */
+    --dark-slate: #1e293b;
+    --light-bg: #f8fafc;
+    --border-color: #e2e8f0;
+    --white: #ffffff;
 }
+
 body {
-    display: flex;
-    flex-direction: column; /*Alinea los elementos uno debajo de otro*/
-    min-height: 100vh; /*Ocupa el 100% del alto de la ventana del navegador*/
+    background-color: var(--light-bg);
+    color: var(--dark-slate);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.content-wrapper {
-    flex: 1; /*Esto hace que el contenedor crezca y empuje al footer al fondo*/
+
+.checkout-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.checkout-container h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--dark-slate);
+    text-align: center;
+}
+
+/* Layout en dos columnas */
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr; /* Formulario a la izquierda, resumen a la derecha */
+    gap: 40px;
+    align-items: start;
+}
+
+/* Estilos de las secciones */
+.checkout-form, .order-summary {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--border-color);
+}
+
+.checkout-form h3, .order-summary h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--primary-teal);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* Campos de formulario */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.form-group input, .payment-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus, .payment-select:focus {
+    outline: none;
+    border-color: var(--primary-teal);
+    box-shadow: 0 0 0 3px rgba(80, 165, 180, 0.1);
+}
+
+/* Caja de resumen */
+.summary-box {
+    background: #f1f5f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.summary-box p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.summary-box hr {
+    border: 0;
+    border-top: 1px solid var(--border-color);
+    margin: 15px 0;
+}
+
+.total-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-teal);
+}
+
+/* Botón de confirmación */
+.btn-confirm {
+    width: 100%;
+    background-color: var(--primary-teal);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.btn-confirm:hover {
+    background-color: #3e8a97;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
 }

@@ -245,3 +245,58 @@ body{
     filter: grayscale(1); /*Pone los iconos en blanco y negro*/
     opacity: 0.6; /*Los hace un poco transparentes*/
 }
+/*-- CARRITO VACÍO --*/
+.cart-empty {
+    text-align: center;
+    padding: 50px 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.cart-empty p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+/*-- BOTÓN VACIAR CARRITO --*/
+.btn-vaciar {
+    background-color: #ff4d4d; /* Color rojo para advertir acción de borrado */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background 0.3s;
+}
+.btn-vaciar:hover {
+    background-color: #cc0000;
+}
+/*-- AJUSTE CONTROLES CANTIDAD --*/
+.cantidad-controles {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.btn-cantidad {
+    background-color: #545454;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%; /* Botones circulares */
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-cantidad:hover {
+    background-color: #333;
+}
+.numero-cantidad {
+    font-weight: bold;
+    font-size: 16px;
+    min-width: 20px;
+    text-align: center;
+}

@@ -8,13 +8,53 @@
         <link rel="stylesheet" href="/CSS/header.css">
         <link rel="stylesheet" href="/CSS/footer.css">
         <link rel="stylesheet" href="/CSS/index.css">
+        <link rel="stylesheet" href="/CSS/cart.css">
+        <link rel="stylesheet" href="/CSS/checkout.css">
     </head>
 
    <body>
     <%- include('../partials/header') %>
 
-    <main class="content-wrapper">
-        
+    <main class="content-wrapper"> <!--Contenido principal de la página -->
+        <div class="checkout-container"> <!--Contenedor general del checkout-->
+            <h1>Finalizar Compra</h1>
+
+            <div class="checkout-layout"> <!--Clase para organizar estructura visual-->
+                <section class="checkout-form"> <!--Agrupa contenido relacionado, en este caso el formulario de checkout-->
+                    <!--Define a qué ruta se enviarán los datos cuando el usuario haga clic en el botón-->
+                    <!--POST envía la información de forma "invisible" y segura al servidor para crear el pedido-->
+                    <form action="/products/confirm" method="POST"> 
+                        <h3>Datos de Envío</h3>
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label> <!--Describe el input--> 
+                            <input type="text" id="nombre" name="nombre">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <input type="text" id="direccion" name="direccion">
+                        </div>
+
+                        <h3>Método de Pago</h3>
+                        <select name="metodoPago" class="payment-select">
+                            <option value="puntos">Canje de Puntos</option>
+                            <option value="tarjeta">Tarjeta de Crédito</option>
+                        </select>
+
+                        <button type="submit" class="btn-confirm">Confirmar Pedido</button> <!--Botón para enviar el formulario al servidor y procesar el pedido-->
+                    </form>
+                </section>
+
+                <section class="order-summary">
+                    <h3>Tu Resumen</h3>
+                    <div class="summary-box">
+                        <p>Items: <span><%= cart.length %></span></p> <!--Muestra la cantidad de productos en el carrito-->
+                        <hr>
+                        <p class="total-text">Total Puntos: <strong><%= total %></strong></p> <!--Muestra el total de puntos a pagar, usando la variable "total" que se pasó desde el servidor-->
+                    </div>
+                </section>
+            </div>
+        </div> 
     </main>
 
     <%- include('../partials/footer') %>
