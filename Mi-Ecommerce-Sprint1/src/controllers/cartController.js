@@ -1,25 +1,28 @@
 const productModel = require('../models/productModel');
 
 //VER CARRITO
-exports.getCart = (req, res) => {
-  const cartSession = req.session.cart || []; //Intenta leer el carrito desde la sesión del usuario (la memoria temporal del navegador). Si no existe, lo inicializa como un array vacío.
+exports.index = (req, res) => {
+  const cartSession = req.session.cart || [];
   
   const detailedCart = cartSession.map(item => {
-     //Crea un nuevo objeto que representa el producto en el carrito, incluyendo su ID, nombre, precio, cantidad y subtotal.
-    const productDetail = productModel.getProductById(item.productId); //Busca los detalles del producto usando su ID.
-    return{
-      id: productDetail.id, //
+    const productDetail = productModel.getProductById(item.productId);
+    
+    //Si el producto no existe, devolvemos null para no romper nada
+    if (!productDetail) {
+        return null;
+    }
+    return {
+      id: productDetail.id,
       name: productDetail.name,
       price: productDetail.price,
+      image: productDetail.image,
       quantity: item.quantity,
       subtotal: productDetail.price * item.quantity
     };
-  });
+  }).filter(item => item !== null); // Aquí borramos los productos que no se encontraron
 
-  //Calcula el total del carrito sumando los subtotales de cada producto.
   const total = detailedCart.reduce((acc, item) => acc + item.subtotal, 0);
 
-  //Renderiza la vista del carrito, pasando los productos y el total para que se muestren en la página.
   res.render('pages/cart', { cart: detailedCart, total: total });
 };
 
@@ -48,7 +51,7 @@ exports.addToCart = (req, res) => {
     } else {
         req.session.cart.push({ productId: productId, quantity: 1 });
     }
-    res.redirect('/product/cart');
+    res.redirect('/cart');
 };
 
 //ELIMINAR PRODUCTO DEL CARRITO
@@ -65,11 +68,11 @@ exports.updateQuantity = (req, res) => {
           req.session.cart = req.session.cart.filter(i => i.productId != id); //Actualiza el carrito en la sesión para eliminar el producto cuyo ID coincide con el ID proporcionado.
         }
     }
-    res.redirect('/product/cart'); //Después de modificar el carrito, redirige al usuario a la página del carrito para que pueda ver los cambios realizados.
+    res.redirect('/cart'); //Después de modificar el carrito, redirige al usuario a la página del carrito para que pueda ver los cambios realizados.
 };
 
 //VACIAR CARRITO
 exports.clearCart = (req, res) => {
     req.session.cart = [];
-    res.redirect('/product/cart');
+    res.redirect('/cart');
 };
