@@ -1,26 +1,33 @@
 //--- IMPORTACIÓN DE MÓDULOS ---
-const express = require("express"); // Traigo la herramienta Express
-const path = require("path"); // Módulo nativo para trabajar con rutas de carpetas
+const express = require("express"); //Traigo la herramienta Express
+const session = require('express-session'); //Traigo el módulo de sesiones para manejar el carrito de compras
+const path = require("path"); //Módulo nativo para trabajar con rutas de carpetas
 
-const app = express(); // Pongo Express en funcionamiento
+const app = express(); //Pongo Express en funcionamiento
 
 //--- MIDDLEWARES ---
 app.use(express.urlencoded({ extended: true })); //prepara el proyecto para: login, register, carrito
-app.use(express.json()); // Permite recibir datos en formato JSON
+app.use(express.json()); //Permite recibir datos en formato JSON
+
+//--- CONFIGURACIÓN DE SESIONES ---
+app.use(session({ //Configura el middleware de sesiones para manejar el carrito de compras. Esto permite almacenar información del carrito en la sesión del usuario, lo que es útil para mantener el estado del carrito mientras el usuario navega por el sitio.
+    secret: 'claveUltraSecreta_carrito',
+    resave: false,
+    saveUninitialized: false
+}));
 
 //--- IMPORTACIÓN DE RUTAS ---
-const mainRoutes = require("./src/routes/mainRoutes"); // Traigo las rutas principales desde la carpeta routes
+const mainRoutes = require("./src/routes/mainRoutes"); //Traigo las rutas principales desde la carpeta routes
+const cartRoutes = require("./src/routes/cartRoute"); //Traigo las rutas del carrito desde la carpeta routes
 
 //--- CONFIGURACIÓN DEL SERVIDOR ---
 app.set("view engine", "ejs"); // Indico que usaré EJS como motor de plantillas
-
 app.set("views", path.join(__dirname, "views")); // Le digo dónde están guardadas las vistas
-
 app.use(express.static(path.join(__dirname, "assets"))); // Habilito la carpeta assets para usar CSS, imágenes y archivos públicos
 
 //--- DEFINICIÓN DE RUTAS --- //User Story #1 (Sprint 2) – Reordenar Proyecto
 app.use("/", mainRoutes);  
-// Todas las rutas principales ahora se manejan desde mainRoutes.js 
+app.use("/cart", cartRoutes);
 
 //--- ERROR 404 ---
 app.use((req, res) => {

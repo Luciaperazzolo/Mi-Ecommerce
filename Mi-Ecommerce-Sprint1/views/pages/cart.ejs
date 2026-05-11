@@ -14,7 +14,7 @@
         <%- include('../partials/header') %>
 
         <section class="cart-nav"> <!--Agrupa los elementos de la parte de arriba.-->
-                <a href="/product/index" class="link-volver"><i class="fas fa-chevron-left"></i>Volver a Inicio</a>
+                <a href="/" class="link-volver"><i class="fas fa-chevron-left"></i>Volver a Inicio</a>
                 <h2>Productos en tu Carrito</h2>
         </section>
 
@@ -28,11 +28,11 @@
                         <div class="item-details">
                             <h3><%= item.name %></h3>
                             <p>Precio: <%= item.price %> puntos</p>
-                            <form action="/product/cart/update/<%= item.id %>/decrease" method="POST" style="display:inline;">
+                            <form action="/cart/update/<%= item.id %>/decrease" method="POST" style="display:inline;">
                                 <button type="submit">-</button>
                             </form>
                             <span><%= item.quantity %></span>
-                            <form action="/product/cart/update/<%= item.id %>/increase" method="POST" style="display:inline;">
+                            <form action="/cart/update/<%= item.id %>/increase" method="POST" style="display:inline;">
                                 <button type="submit">+</button>
                             </form>
                         </div>
@@ -43,9 +43,9 @@
 
             <div class="cart-footer">
                 <p>Total general: <strong><%= total %> puntos</strong></p>
-                <a href="/product/checkout" class="btn-primary">Finalizar Compra</a>
+                <a href="/cart/checkout" class="btn-primary">Finalizar Compra</a>
             
-                <form action="/product/cart/clear" method="POST">
+                <form action="/cart/clear" method="POST">
                     <button type="submit" class="btn-vaciar">Vaciar Carrito</button>
                 </form>
             </div>
@@ -60,7 +60,7 @@
             <!--TOTAL A PAGAR Y BOTÓN DE PAGAR-->
            <section class="cart-footer">
             <p>Total de Puntos: <strong><%= total %></strong></p>
-            <a href="/product/checkout" class="btn-primary">Ir a Pagar</a>
+            <a href="/cart/checkout" class="btn-primary">Ir a Pagar</a>
            </section>
 
             
