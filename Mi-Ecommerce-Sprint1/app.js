@@ -1,29 +1,33 @@
 //--- IMPORTACIÓN DE MÓDULOS ---
-const express = require ('express'); //Traigo la Heramienta
-const session = require('express-session'); //Herramienta para usar sesiones
-const productRoutes = require('./routes/productRoute'); //Importar las rutas relacionadas con productos.
-const app = express (); //La pongo en función
+const express = require("express"); // Traigo la herramienta Express
+const path = require("path"); // Módulo nativo para trabajar con rutas de carpetas
+
+const app = express(); // Pongo Express en funcionamiento
+
+//--- MIDDLEWARES ---
+app.use(express.urlencoded({ extended: true })); //prepara el proyecto para: login, register, carrito
+app.use(express.json()); // Permite recibir datos en formato JSON
+
+//--- IMPORTACIÓN DE RUTAS ---
+const mainRoutes = require("./src/routes/mainRoutes"); // Traigo las rutas principales desde la carpeta routes
 
 //--- CONFIGURACIÓN DEL SERVIDOR ---
-app.set ('view engine', 'ejs'); //Configuro el motor de plantillas para que use EJS, lo que me permite generar HTML dinámico a partir de mis vistas.
-app.use(express.static(__dirname +'/assets')); //Configuro la carpeta de archivos estáticos, lo que me permite servir CSS, imágenes y otros recursos directamente desde esa carpeta sin necesidad de rutas específicas para cada uno.
+app.set("view engine", "ejs"); // Indico que usaré EJS como motor de plantillas
 
-//--- ACTIVO LA HERRAMIENTA DE SESIONES ---
-app.use(session({ //Activando el sistema de sesiones.
-    secret: 'claveUltraSecreta_carrito', //Contraseña interna que usa el servidor para firmar la sesión y evitar que la manipulen.
-    resave: false, //No guarda la sesión si no cambio algo de página en página.
-    saveUninitialized: false //Evita que se guarden sesiones vacias.
-}));
+app.set("views", path.join(__dirname, "views")); // Le digo dónde están guardadas las vistas
 
-//--- DEFINICIÓN DE RUTAS (USER STORY #2) ---
-app.get('/', (req, res) => {
-    res.render('pages/index');
+app.use(express.static(path.join(__dirname, "assets"))); // Habilito la carpeta assets para usar CSS, imágenes y archivos públicos
+
+//--- DEFINICIÓN DE RUTAS --- //User Story #1 (Sprint 2) – Reordenar Proyecto
+app.use("/", mainRoutes);  
+// Todas las rutas principales ahora se manejan desde mainRoutes.js 
+
+//--- ERROR 404 ---
+app.use((req, res) => {
+    res.status(404).render("pages/404");
 });
 
-app.use('/product', productRoutes); //Usar las rutas relacionadas con productos cuando el usuario acceda a /product
-
 //--- PUESTA EN MARCHA ---
-app.listen(3000, () => { //Encender servidor
+app.listen(3000, () => { // Encender servidor
     console.log("Servidor corriendo en http://localhost:3000");
-});//mje en terminal: "Servidor funcionando en: http://localhost:3000"
-
+}); 
