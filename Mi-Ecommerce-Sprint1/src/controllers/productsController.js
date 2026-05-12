@@ -17,7 +17,7 @@ const productsController = {
             // 3. Cortamos para que solo pasen 4 a la vista
             const relatedProducts = related.slice(0, 4);
 
-            res.render('products', { product, relatedProducts });
+            res.render('pages/products', { product, relatedProducts });
         } else {
             // 4. Si el ID no existe (ej: 999), muestra este mensaje
             res.send("<h1>Producto no disponible</h1><a href='/'>Volver al inicio</a>");
