@@ -19,15 +19,17 @@ app.use(session({ //Configura el middleware de sesiones para manejar el carrito 
 //--- IMPORTACIÓN DE RUTAS ---
 const mainRoutes = require("./src/routes/mainRoutes"); //Traigo las rutas principales desde la carpeta routes
 const cartRoutes = require("./src/routes/cartRoute"); //Traigo las rutas del carrito desde la carpeta routes
+const productsRouter = require("./src/routes/productsRouter"); // Rutas de productos
 
 //--- CONFIGURACIÓN DEL SERVIDOR ---
 app.set("view engine", "ejs"); // Indico que usaré EJS como motor de plantillas
-app.set("views", path.join(__dirname, "views")); // Le digo dónde están guardadas las vistas
+app.set("views", path.join(__dirname, "src", "views")); // CORRECCIÓN: Le digo dónde están guardadas las vistas (dentro de src)
 app.use(express.static(path.join(__dirname, "assets"))); // Habilito la carpeta assets para usar CSS, imágenes y archivos públicos
 
 //--- DEFINICIÓN DE RUTAS --- //User Story #1 (Sprint 2) – Reordenar Proyecto
 app.use("/", mainRoutes);  
 app.use("/cart", cartRoutes);
+app.use("/products", productsRouter); //   rutas de productos
 
 //--- ERROR 404 ---
 app.use((req, res) => {
@@ -37,4 +39,4 @@ app.use((req, res) => {
 //--- PUESTA EN MARCHA ---
 app.listen(3000, () => { // Encender servidor
     console.log("Servidor corriendo en http://localhost:3000");
-}); 
+});
