@@ -1,0 +1,53 @@
+[
+  {
+  "id": 1,
+  "name": "Whiskey Jack Daniels",
+  "category": "Bebidas",
+  "price": "19.900",
+  "image": "Jack Daniels.jpg",
+  "image2": "productos1.png", 
+  "image3": "productos2.png",
+  "image4": "productos3.png",
+  "description": "Descripción del whiskey..."
+},
+  {
+    "id": 2,
+    "name": "Fernet Branca",
+    "category": "Bebidas",
+    "price": "15.000",
+    "image": "fernet.png",
+    "description": "Fernet Branca."
+  },
+  {
+    "id": 3,
+    "name": "Vino Tinto Reserva",
+    "category": "Bebidas",
+    "price": "8.500",
+    "image": "vino.png",
+    "description": "Vino tinto reserva."
+  },
+  {
+    "id": 4,
+    "name": "Cerveza Corona",
+    "category": "Bebidas",
+    "price": "3.200",
+    "image": "cervezas.png",
+    "description": "Pack de 6 latas."
+  },
+  {
+    "id": 5,
+    "name": "Gaseosa Pasos de los Toros",
+    "category": "Bebidas",
+    "price": "1.500",
+    "image": "gaseosa.png",
+    "description": "2 litros descartable."
+  },
+  {
+    "id": 6,
+    "name": "Licor Something",
+    "category": "Bebidas",
+    "price": "30.000",
+    "image": "producto4.png",
+    "description": "Licor ."
+  }
+]
