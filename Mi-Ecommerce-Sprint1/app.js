@@ -2,12 +2,18 @@
 const express = require("express"); //Traigo la herramienta Express
 const session = require('express-session'); //Traigo el módulo de sesiones para manejar el carrito de compras
 const path = require("path"); //Módulo nativo para trabajar con rutas de carpetas
-
 const app = express(); //Pongo Express en funcionamiento
 
+//--- CONFIGURACIÓN DE VISTAS --- 
+app.set("view engine", "ejs"); 
+app.set("views", path.join(__dirname, "views")); 
+
+
 //--- MIDDLEWARES ---
+app.use(express.static(path.join(__dirname, "assets"))); 
 app.use(express.urlencoded({ extended: true })); //prepara el proyecto para: login, register, carrito
 app.use(express.json()); //Permite recibir datos en formato JSON
+
 
 //--- CONFIGURACIÓN DE SESIONES ---
 app.use(session({ //Configura el middleware de sesiones para manejar el carrito de compras. Esto permite almacenar información del carrito en la sesión del usuario, lo que es útil para mantener el estado del carrito mientras el usuario navega por el sitio.
