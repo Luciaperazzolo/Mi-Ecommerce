@@ -8,7 +8,7 @@
   "image2": "productos1.png", 
   "image3": "productos2.png",
   "image4": "productos3.png",
-  "description": "Descripción del whiskey..."
+  "description": "Whiskey Jack Daniels, el clásico americano con sabor inconfundible."
 },
   {
     "id": 2,
@@ -16,7 +16,7 @@
     "category": "Bebidas",
     "price": "15.000",
     "image": "fernet.png",
-    "description": "Fernet Branca."
+    "description": "Fernet Branca,  sabor único."
   },
   {
     "id": 3,
@@ -24,7 +24,7 @@
     "category": "Bebidas",
     "price": "8.500",
     "image": "vino.png",
-    "description": "Vino tinto reserva."
+    "description": "Vino tinto reserva, de calidad premium."
   },
   {
     "id": 4,
@@ -48,6 +48,70 @@
     "category": "Bebidas",
     "price": "30.000",
     "image": "producto4.png",
-    "description": "Licor ."
+    "description": "Licor Something, con sabor único."
+  },
+  {
+    "id": 7,
+    "name": "Ramen",
+    "price": 500,
+    "description": "Ramen instantáneo, delicioso y fácil de preparar...",
+    "category": "Alimentos",
+    "image": "producto5.png"
+  },
+  {
+    "id": 8,
+    "name": "Salchichas Frescas",
+    "price": 1500,
+    "description": "Salchichas frescas de cerdo, ideales para asados y parrilladas...",
+    "category": "Alimentos",
+    "image": "producto6.png"
+  },
+  {
+    "id": 9,
+    "name": "Ñoquis de Papa",
+    "price": 800,
+    "description": "Ñoquis de papa caseros, ideales para una comida rápida y deliciosa...",
+    "category": "Alimentos",
+    "image": "producto7.png"
+  },
+  {
+    "id": 10,
+    "name": "Papas Lays",
+    "price": 500,
+    "description": "Las mejores papitas para acompañar tus bebidas...",
+    "category": "Alimentos",
+    "image": "producto8.png"
+  },
+  {
+    "id": 11,
+    "name": "Teléfono Inteligente",
+    "price": 1500,
+    "description": "Teléfono inteligente con las últimas características...",
+    "category": "Electronica",
+    "image": "producto9.png"
+  },
+  {
+    "id": 12,
+    "name": "Laptop Gamer",
+    "price": 500,
+    "description": "Laptop diseñada para gaming, con rendimiento alto...",
+    "category": "Electronica",
+    "image": "producto10.png"
+  },
+  {
+    "id": 13,
+    "name": "Televisor 4K",
+    "price": 1500,
+    "description": "Televisor 4K con resolución ultra HD...",
+    "category": "Electronica",
+    "image": "producto11.png"
+  },
+{
+    "id": 14,
+    "name": " Camara de Fotos",
+    "price": 1500,
+    "description": "Camara de fotos digital...",
+    "category": "Electronica",
+    "image": "producto12.png"
   }
 ]
