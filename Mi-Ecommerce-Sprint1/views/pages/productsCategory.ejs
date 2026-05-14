@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+<link rel="stylesheet" href="/css/product.css">
+
+<main class="contenedor-detalle">
+    <h1 style="padding: 20px;">Explorando: <%= categoryName %></h1>
+
+    <section class="relacionados">
+        <div class="grilla-productos">
+            <% if (products.length > 0) { %>
+                <% products.forEach(p => { %>
+                    <!-- Agregamos una clase condicional si no hay stock -->
+                    <article class="tarjeta-chica <%= p.stock === 0 ? 'sin-stock-container' : '' %>" style="position: relative;">
+                        
+                        <!-- REQUERIMIENTO #11: Badge visual -->
+                        <% if (p.stock === 0) { %>
+                            <div class="badge-agotado">Sin stock</div>
+                        <% } %>
+
+                        <a href="/products/<%= p.id %>" style="text-decoration: none; color: inherit;">
+                            <img src="/Imagenes-productos/<%= p.image %>" alt="<%= p.name %>" <%= p.stock === 0 ? 'style="filter: grayscale(1); opacity: 0.6;"' : '' %>>
+                            
+                            <div class="cuerpo-tarjeta">
+                                <p class="nombre-relacionado"><%= p.name %></p>
+                                <div class="precio-relacionado">
+                                    <span class="puntos"><%= p.price %></span>
+                                    <span class="label">PUNTOS</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- REQUERIMIENTO #11: Botón de agregar deshabilitado -->
+                        <div style="padding: 10px; text-align: center;">
+                            <button class="btn-agregar" <%= p.stock === 0 ? 'disabled' : '' %> 
+                                    style="width: 100%; cursor: <%= p.stock === 0 ? 'not-allowed' : 'pointer' %>;">
+                                <%= p.stock === 0 ? 'No disponible' : 'Agregar' %>
+                            </button>
+                        </div>
+                    </article>
+                <% }); %>
+            <% } else { %>
+                <!-- REQUERIMIENTO #10: Mensaje amigable -->
+                <div style="padding: 20px;">
+                    <p>Lo sentimos, actualmente no tenemos productos disponibles en la categoría "<%= categoryName %>".</p>
+                    <a href="/">Volver al inicio</a>
+                </div>
+            <% } %>
+        </div>
+    </section>
+</main>
