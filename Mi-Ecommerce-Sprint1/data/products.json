@@ -3,7 +3,8 @@
   "id": 1,
   "name": "Whiskey Jack Daniels",
   "category": "Bebidas",
-  "price": "19.900",
+  "price": 19900,
+  "stock": 5,
   "image": "Jack Daniels.jpg",
   "image2": "productos1.png", 
   "image3": "productos2.png",
@@ -14,7 +15,8 @@
     "id": 2,
     "name": "Fernet Branca",
     "category": "Bebidas",
-    "price": "15.000",
+    "price": 15000,
+    "stock": 6,
     "image": "fernet.png",
     "description": "Fernet Branca,  sabor único."
   },
@@ -22,7 +24,8 @@
     "id": 3,
     "name": "Vino Tinto Reserva",
     "category": "Bebidas",
-    "price": "8.500",
+    "price": 8500,
+    "stock": 4,
     "image": "vino.png",
     "description": "Vino tinto reserva, de calidad premium."
   },
@@ -30,7 +33,8 @@
     "id": 4,
     "name": "Cerveza Corona",
     "category": "Bebidas",
-    "price": "3.200",
+    "price": 3200,
+    "stock": 8,
     "image": "cervezas.png",
     "description": "Pack de 6 latas."
   },
@@ -38,7 +42,8 @@
     "id": 5,
     "name": "Gaseosa Pasos de los Toros",
     "category": "Bebidas",
-    "price": "1.500",
+    "price": 1500,
+    "stock": 7,
     "image": "gaseosa.png",
     "description": "2 litros descartable."
   },
@@ -46,7 +51,8 @@
     "id": 6,
     "name": "Licor Something",
     "category": "Bebidas",
-    "price": "30.000",
+    "price": 30000,
+    "stock": 10,
     "image": "producto4.png",
     "description": "Licor Something, con sabor único."
   },
@@ -54,6 +60,7 @@
     "id": 7,
     "name": "Ramen",
     "price": 500,
+    "stock": 3,
     "description": "Ramen instantáneo, delicioso y fácil de preparar...",
     "category": "Alimentos",
     "image": "producto5.png"
@@ -62,6 +69,7 @@
     "id": 8,
     "name": "Salchichas Frescas",
     "price": 1500,
+    "stock": 5,
     "description": "Salchichas frescas de cerdo, ideales para asados y parrilladas...",
     "category": "Alimentos",
     "image": "producto6.png"
@@ -70,6 +78,7 @@
     "id": 9,
     "name": "Ñoquis de Papa",
     "price": 800,
+    "stock": 9,
     "description": "Ñoquis de papa caseros, ideales para una comida rápida y deliciosa...",
     "category": "Alimentos",
     "image": "producto7.png"
@@ -78,6 +87,7 @@
     "id": 10,
     "name": "Papas Lays",
     "price": 500,
+    "stock": 12,
     "description": "Las mejores papitas para acompañar tus bebidas...",
     "category": "Alimentos",
     "image": "producto8.png"
@@ -86,6 +96,7 @@
     "id": 11,
     "name": "Teléfono Inteligente",
     "price": 1500,
+    "stock": 2,
     "description": "Teléfono inteligente con las últimas características...",
     "category": "Electronica",
     "image": "producto9.png"
@@ -94,6 +105,7 @@
     "id": 12,
     "name": "Laptop Gamer",
     "price": 500,
+    "stock": 5,
     "description": "Laptop diseñada para gaming, con rendimiento alto...",
     "category": "Electronica",
     "image": "producto10.png"
@@ -102,6 +114,7 @@
     "id": 13,
     "name": "Televisor 4K",
     "price": 1500,
+    "stock": 6,
     "description": "Televisor 4K con resolución ultra HD...",
     "category": "Electronica",
     "image": "producto11.png"
@@ -110,6 +123,7 @@
     "id": 14,
     "name": " Camara de Fotos",
     "price": 1500,
+    "stock": 10,
     "description": "Camara de fotos digital...",
     "category": "Electronica",
     "image": "producto12.png"

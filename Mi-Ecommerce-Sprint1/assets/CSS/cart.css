@@ -1,97 +1,17 @@
-body{
-  font-family: Arial, sans-serif;
-  background: #e2e1e1f8; 
-  margin: 0; 
-  padding: 0;
+html, body {
+    height: 100%;
 }
-
-/*--ENCABEZADO--*/
-.main-header {
-    background: #fff;
+body {
     display: flex;
-    justify-content: space-between; /*Distribuye los elementos: uno al inicio, otro al centro y otro al final*/
-    align-items: center; /*Centra verticalmente los elementos del header*/
-    padding: 15px 5%; /*Relleno de 15px arriba/abajo y 5% a los laterales*/
-    border-bottom: none;
+    flex-direction: column;
+    min-height: 100vh; /* ocupa toda la ventana */
+    background: #e2e1e1f8;
+    font-family: Arial, sans-serif;
+    margin: 0; 
+    padding: 0;
 }
-/*--BARRA DE BÚSQUEDA--*/
-.search-container {
-    display: flex;
-    align-items: center;
-    position: relative; /*Para posicionar la lupa adentro*/
-    flex: 1; 
-    max-width: 700px;
-    margin: 0 40px;
-}
-.search-bar {
-    width: 100%; /*Ocupa todo el ancho del contenedor*/
-    padding: 8px 40px 8px 15px; /*Agregamos 40px a la derecha para que el texto no pise la lupa*/
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    background-color: #f9f9f9;
-    outline: none; /*Quita el borde azul por defecto al hacer click*/
-}
-.search-icon {
-    position: absolute;
-    right: 15px; /* La separa del borde derecho */
-    color: #888;
-    pointer-events: none; /* Si el usuario hace click en la lupa, el foco va al input */
-}
-/*--ESTILO DEL LOGO--*/
-.logo {
-  font-size: 24px;
-  font-weight: bold; /*Letra en negrita*/
-  color: rgb(80, 165, 180);
-}
-/*Parte específica del logo (segunda palabra)*/
-.logo span {
-  color: rgb(79, 189, 199); 
-}
-
-/*--CARRITO Y USUARIO--*/
-.header-icons {
-  display: flex; /*Alinea los iconos en fila*/
-  align-items: center;
-  gap: 25px; /*Espacio entre cada icono*/
-}
-/*Contenedor del icono del carrito*/
-.cart-wrapper {
-    position: relative; /*Para que la burbuja roja se posicione respecto a este contenedor*/
-    font-size: 22px; 
-    cursor: pointer;
-}
-/*Imagen del icono del carrito*/
-.cart-icon-img {
-    width: 25px; 
-    height: auto;
-    display: block;
-}
-/*Burbuja roja de notificación*/
-.cart-badge {
-  position: absolute; /*Se despega del flujo normal para ubicarse con top/right*/
-  top: -8px; /*Mueve la burbuja un poco hacia arriba*/      
-  right: -10px; /*Mueve la burbuja un poco hacia la derecha*/
-  background-color: #e63946;
-  color: white;
-  font-size: 10px;
-  font-weight: bold;
-  height: 16px;
-  width: 16px;
-  border-radius: 50%; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/*Icono del Usuario*/
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 8px; /*Crea un espacio automático entre el icono y el texto*/
-    cursor: pointer;
-}
-.user-icon {
-    font-size: 1.2rem; /*Ajusta el tamaño del icono*/
-    color: #333;
+main {
+    flex: 1; /* ocupa el espacio disponible y empuja el footer */
 }
 
 /*--ENLACE VOLVER Y ENLACE IR A PAGAR--*/
@@ -99,7 +19,7 @@ body{
     text-decoration: none;
 }
 
-/*--BARRA SUPERIOR DEL CARRITO--*/
+/*--BARRA SUPERIOR DEL CARRITO-- SI*/ 
 .cart-nav {
     display: block; 
     background: transparent; 
@@ -113,7 +33,7 @@ body{
     font-size: 22px;
 }
 .link-volver {
-    color: #333 !important; /*Fuerza el color gris oscuro*/
+    color: #333 !important; /*Fuerza el color gris oscuro SI*/
     font-size: 14px;
     display: flex;
     align-items: center;
@@ -123,24 +43,27 @@ body{
 /*--CONTENEDOR DE CARRITO DE PRODUCTOS--*/
 .cart-container{
     max-width: 1000px; 
-    margin: 20px auto; /*Centra el bloque y da espacio arriba/abajo*/
+    margin: 20px auto; /*Centra el bloque y da espacio arriba/abajo SI*/
     background: #e2e1e1f8;
     padding: 20px; 
     border-radius: 8px;
 }
 
-/*--CADA PRODUCTO--*/
-.item{
-    background: #fff;
-    display: flex; /*Alinea imagen, info y controles en fila*/
-    align-items: center; /*Centra todo verticalmente*/
-    justify-content: space-between; /*Empuja los controles a la derecha*/
-    margin-bottom: 15px; /*Espacio entre un producto y otro*/
-    padding: 10px; 
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+/*--CADA PRODUCTO-- SI*/
+.cart-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
 }
-/*Imagen del producto*/
+
+.cart-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 15px;
+    text-align: center;
+}
+/*Imagen del producto SI*/
 .item-img{
     width: 80px;
     height: 80px;
@@ -198,52 +121,29 @@ body{
     margin-bottom: 10px;
 }
 /*Botón principal de "Pagar"*/
-.btn-primary {
-    background: #545454; 
-    color: #fff;
-    padding: 10px 25px;
-    border-radius: 20px;
+.btn-primary, .btn-vaciar {
+    min-width: 120px;
+    padding: 10px 20px;
+    border-radius: 8px;
     font-weight: bold;
-    transition: background 0.3s; /*Animación suave al cambiar el color*/
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 /*Efecto al pasar el mouse por el botón*/
+.btn-primary {
+    background: #545454;
+    color: #fff;
+}
 .btn-primary:hover {
     background: #333;
-    opacity: 1;
 }
-
-/*--FOOTER--*/
-.site-footer {
-    background: #e2e1e1f8;
-    display: flex;
-    justify-content: space-between; /*Separa texto legal, redes y apps*/
-    align-items: center;
-    padding: 20px 5%;
-    border-top: 1px solid #e2e1e1f8; /*Línea divisoria muy sutil*/
+.btn-vaciar {
+    background: #e63946;
+    color: #fff;
 }
-.site-footer p {
-    margin: 0; 
-    font-size: 12px;
-    color: #888; /*Color gris suave para el copyright*/
-}
-.social-icons {
-    display: flex;
-    gap: 10px;
-}
-.social-icons a:hover {
-  color: #00bcd4;         
-}
-.app-links {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-}
-/*Iconos de redes y tiendas*/
-.store-icon, .social-icons img {
-    width: 18px; 
-    height: auto;
-    filter: grayscale(1); /*Pone los iconos en blanco y negro*/
-    opacity: 0.6; /*Los hace un poco transparentes*/
+.btn-vaciar:hover {
+    background: #cc0000;
 }
 /*-- CARRITO VACÍO --*/
 .cart-empty {
@@ -259,44 +159,28 @@ body{
     margin-bottom: 20px;
 }
 /*-- BOTÓN VACIAR CARRITO --*/
-.btn-vaciar {
-    background-color: #ff4d4d; /* Color rojo para advertir acción de borrado */
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-    transition: background 0.3s;
-}
-.btn-vaciar:hover {
-    background-color: #cc0000;
-}
-/*-- AJUSTE CONTROLES CANTIDAD --*/
+
+/*-- AJUSTE CONTROLES CANTIDAD -- SI*/
 .cantidad-controles {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    justify-content: center; /* centra horizontalmente */
+    align-items: center;     /* centra verticalmente */
+    gap: 8px;                /* espacio uniforme */
 }
 .btn-cantidad {
     background-color: #545454;
     color: white;
     border: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%; /* Botones circulares */
+    width: 28px;   /* más chico */
+    height: 28px;  /* más chico */
+    border-radius: 50%; 
     cursor: pointer;
     font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 14px; /* texto más proporcionado */
 }
 .btn-cantidad:hover {
     background-color: #333;
-}
-.numero-cantidad {
-    font-weight: bold;
-    font-size: 16px;
-    min-width: 20px;
-    text-align: center;
 }

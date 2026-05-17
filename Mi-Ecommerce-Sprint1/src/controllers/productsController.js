@@ -1,4 +1,5 @@
 const productModel = require('../models/productModel'); 
+const cartService = require('../services/cartService');
 
 const productsController = {
     //  Muestra  todos los productos juntos '
@@ -39,7 +40,37 @@ const productsController = {
             products: filtrados, 
             categoryName: nombreCategoria 
         });
+    },
+
+    //Muestra el formulario de confirmación de pedido.
+    confirm: (req, res) => {
+    const { nombre, direccion, metodoPago } = req.body;
+    const cartSession = req.session.cart || [];
+    
+    //Armamos el carrito detallado con datos reales
+    const detailedCart = cartSession.map(item => {
+        const productDetail = productModel.findById(item.productId);
+        if (!productDetail) return null;
+        return {
+            id: productDetail.id,
+            name: productDetail.name,
+            price: productDetail.price,
+            image: `/Imagenes-productos/${productDetail.image}`,
+            quantity: item.quantity,
+            subtotal: productDetail.price * item.quantity
+        };
+    }).filter(item => item !== null);
+
+    const total = detailedCart.reduce((acc, item) => acc + item.subtotal, 0);
+
+    res.render('pages/confirm', {
+        nombre,
+        direccion,
+        metodoPago,
+        cart: detailedCart,
+        total
+    });
     }
-};
+}
 
 module.exports = productsController;

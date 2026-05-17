@@ -33,9 +33,12 @@
             </div>
             
             <!-- Botón deshabilitado y con texto cambiado si no hay stock -->
-            <button class="btn-agregar" <%= product.stock === 0 ? 'disabled' : '' %>>
-                <%= product.stock === 0 ? 'SIN STOCK' : 'Agregar al Carrito' %>
-            </button>
+            <form action="/cart/add/<%= product.id %>" method="POST">
+                <button type="submit" class="btn-agregar" <%= product.stock === 0 ? 'disabled' : '' %>>
+                    <%= product.stock === 0 ? 'SIN STOCK' : 'Agregar al Carrito' %>
+                 </button>
+            </form>
+
 
             <div class="texto-descripcion">
                 <p><%= product.description %></p>

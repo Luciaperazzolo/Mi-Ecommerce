@@ -57,29 +57,25 @@
   font-size: 22px; 
   cursor: pointer;
 }
-
-/* Imagen del icono del carrito */
-.cart-icon-img {
-    width: 25px; /* Tamaño fijo de ancho */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block;
+.cart-wrapper a {
+    color: inherit;     /* evita heredar violeta */
+    text-decoration: none;
 }
-
 /*Burbuja roja de notificación*/
 .cart-badge {
-  position: absolute; /*Se despega del flujo normal para ubicarse con top/right*/
-  top: -8px; /*Mueve la burbuja un poco hacia arriba*/      
-  right: -10px; /*Mueve la burbuja un poco hacia la derecha*/
-  background-color: #e63946;
-  color: white;
-  font-size: 10px;
-  font-weight: bold;
-  height: 16px;
-  width: 16px;
-  border-radius: 50%; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    position: absolute;
+    top: -8px;
+    right: -10px;
+    background-color: #e63946;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*Icono del Usuario*/

@@ -1,6 +1,6 @@
 <!--ENCABEZADO CON LOGO Y BUSCADOR-->
         <header class="main-header">
-            <h1 class="logo">Mi<span>Ecommerce</span></h1>
+            <a href="/" class="logo" style="text-decoration: none;">Mi<span>Ecommerce</span></a>
             <div class="search-container">
                 <input type="text" placeholder="Buscar productos..." class="search-bar">
                 <i class="fas fa-search search-icon"></i>
@@ -10,8 +10,9 @@
             <div class="header-icons">
                 <a href="/products" class="link-productos-header">Productos</a>
                    <div class="cart-wrapper">
-                        <a href="/cart" style="color: inherit; text-decoration: none;">
-                            <i class="fas fa-shopping-cart"></i><span class="cart-badge">3</span>
+                        <a href="/cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-badge"><%= cartCount %></span>
                         </a>
                     </div>
                 <div class="user-profile">

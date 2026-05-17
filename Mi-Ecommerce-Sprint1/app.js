@@ -20,6 +20,14 @@ app.use(session({ //Configura el middleware de sesiones para manejar el carrito 
     saveUninitialized: false
 }));
 
+//--- MIDDLEWARE PARA CONTAR LOS ARTÍCULOS EN EL CARRITO ---
+app.use((req, res, next) => {
+    const cartSession = req.session.cart || [];
+    const cartCount = cartSession.reduce((acc, item) => acc + item.quantity, 0);
+    res.locals.cartCount = cartCount;
+    next();
+});
+
 //--- IMPORTACIÓN DE RUTAS ---
 const mainRoutes = require("./src/routes/mainRoutes"); //Traigo las rutas principales desde la carpeta routes
 const cartRoutes = require("./src/routes/cartRoute"); //Traigo las rutas del carrito desde la carpeta routes

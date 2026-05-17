@@ -10,8 +10,10 @@ router.get('/', productsController.catalogo);
 router.get('/category/:name', productsController.categoria);
 
 //  Muestra un solo producto por su ID
-//
 // URL: localhost:3000/products/1
 router.get('/:id', productsController.detalle);
+
+//Ruta para confirmar la compra.
+router.post('/confirm', productsController.confirm);
 
 module.exports = router;

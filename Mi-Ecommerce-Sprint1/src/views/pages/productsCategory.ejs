@@ -32,10 +32,11 @@
                         </a>
 
                         <div style="padding: 10px; text-align: center;">
-                            <button class="btn-agregar" <%= p.stock === 0 ? 'disabled' : '' %> 
-                                    style="width: 100%; cursor: <%= p.stock === 0 ? 'not-allowed' : 'pointer' %>;">
-                                <%= p.stock === 0 ? 'No disponible' : 'Agregar' %>
-                            </button>
+                           <form action="/cart/add/<%= product.id %>" method="POST">
+                                <button type="submit" class="btn-agregar" <%= product.stock === 0 ? 'disabled' : '' %>>
+                                    <%= product.stock === 0 ? 'SIN STOCK' : 'Agregar al Carrito' %>
+                                    </button>
+                            </form>
                         </div>
                     </article>
                 <% }); %>

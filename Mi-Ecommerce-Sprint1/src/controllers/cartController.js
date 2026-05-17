@@ -1,78 +1,72 @@
 const productModel = require('../models/productModel');
+const cartService = require('../services/cartService');
 
-//VER CARRITO
+// VER CARRITO
 exports.index = (req, res) => {
-  const cartSession = req.session.cart || [];
-  
-  const detailedCart = cartSession.map(item => {
-    const productDetail = productModel.getProductById(item.productId);
-    
-    //Si el producto no existe, devolvemos null para no romper nada
-    if (!productDetail) {
-        return null;
-    }
-    return {
-      id: productDetail.id,
-      name: productDetail.name,
-      price: productDetail.price,
-      image: productDetail.image,
-      quantity: item.quantity,
-      subtotal: productDetail.price * item.quantity
-    };
-  }).filter(item => item !== null); // Aquí borramos los productos que no se encontraron
+    const cartSession = cartService.getCart(req);
 
-  const total = detailedCart.reduce((acc, item) => acc + item.subtotal, 0);
+    const detailedCart = cartSession.map(item => {
+        const productDetail = productModel.findById(item.productId);
+        if (!productDetail) return null;
+        return {
+            id: productDetail.id,
+            name: productDetail.name,
+            price: productDetail.price,
+            image: `/Imagenes-productos/${productDetail.image}`,
+            quantity: item.quantity,
+            subtotal: productDetail.price * item.quantity
+        };
+    }).filter(item => item !== null);
 
-  res.render('pages/cart', { cart: detailedCart, total: total });
+    const total = cartService.calculateTotal(req);
+
+    res.render('pages/cart', { cart: detailedCart, total });
 };
 
-//VER EL CHECKOUT
-exports.getCheckout = (req, res) => { //
-  const cartSession = req.session.cart || []; 
-  const detailedCart = cartSession.map(item => {
-    const product = productModel.getProductById(item.productId);
-    return { ...product, quantity: item.quantity, subtotal: product.price * item.quantity };
-  });
-  const total = detailedCart.reduce((acc, item) => acc + item.subtotal, 0);
-  
-  //Renderiza la vista del checkout, pasando los detalles del carrito y el total para que se muestren en la página de pago.
-  res.render('pages/checkout', { cart: detailedCart, total: total });
+// VER EL CHECKOUT
+exports.getCheckout = (req, res) => {
+    const cartSession = cartService.getCart(req);
+    const detailedCart = cartSession.map(item => {
+        const product = productModel.findById(item.productId);
+        return { ...product, quantity: item.quantity, subtotal: product.price * item.quantity };
+    });
+    const total = cartService.calculateTotal(req);
+
+    res.render('pages/checkout', { cart: detailedCart, total });
 };
 
-//AGREGAR PRODUCTO AL CARRITO
+// AGREGAR PRODUCTO AL CARRITO (VALIDANDO STOCK)
 exports.addToCart = (req, res) => {
-  const productId = parseInt(req.params.id); //Obtiene el ID del producto desde los parámetros de la URL.
-  if (!req.session.cart) req.session.cart = []; //Si el carrito no existe en la sesión, lo inicializa como un array vacío.
+    const productId = parseInt(req.params.id);
+    const product = productModel.findById(productId);
+    if (!product) return res.redirect('/');
 
-  const itemIndex = req.session.cart.findIndex(i => i.productId == productId); //Busca si el producto ya está en el carrito.
-  //Si el producto ya está en el carrito, incrementa su cantidad. Si no, lo agrega al carrito con una cantidad inicial de 1.
-  if (itemIndex > -1) {
-        req.session.cart[itemIndex].quantity++;
-    } else {
-        req.session.cart.push({ productId: productId, quantity: 1 });
+    const stockDisponible = product.stock !== undefined ? product.stock : 5;
+    const cart = cartService.getCart(req);
+    const item = cart.find(i => i.productId == productId);
+    const cantidadActual = item ? item.quantity : 0;
+
+    if (cantidadActual + 1 > stockDisponible) {
+        return res.redirect(`/products/detail/${productId}?error=No hay suficiente stock disponible`);
     }
+
+    cartService.addProduct(req, productId, 1);
     res.redirect('/cart');
 };
 
-//ELIMINAR PRODUCTO DEL CARRITO
+// ACTUALIZAR CANTIDAD
 exports.updateQuantity = (req, res) => {
-  const { id, action } = req.params;
-  const item = req.session.cart.find(i => i.productId == id);
+    const { id, action } = req.params;
+    const productId = parseInt(id);
 
-  //Si el producto existe en el carrito, dependiendo de la acción (aumentar o disminuir), se ajusta la cantidad.
-  if (item) {
-    if (action === 'increase') item.quantity++; //Si la acción es "aumentar", incrementa la cantidad del producto en el carrito.
-        else if (action === 'decrease') item.quantity--; //Si la acción es "disminuir", decrementa la cantidad del producto en el carrito.
-        
-        if (item.quantity <= 0) { //Si la cantidad del producto es cero o menos, se elimina del carrito.
-          req.session.cart = req.session.cart.filter(i => i.productId != id); //Actualiza el carrito en la sesión para eliminar el producto cuyo ID coincide con el ID proporcionado.
-        }
-    }
-    res.redirect('/cart'); //Después de modificar el carrito, redirige al usuario a la página del carrito para que pueda ver los cambios realizados.
+    const ok = cartService.updateQuantity(req, productId, action);
+    if (!ok) return res.redirect('/cart?error=Maximo stock alcanzado');
+
+    res.redirect('/cart');
 };
 
-//VACIAR CARRITO
+// VACIAR CARRITO
 exports.clearCart = (req, res) => {
-    req.session.cart = [];
+    cartService.clearCart(req);
     res.redirect('/cart');
 };

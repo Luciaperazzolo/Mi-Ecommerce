@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Confirmado - MiEcommerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/CSS/header.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/CSS/confirm.css">
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <main class="content-wrapper">
+        <div class="confirm-container">
+            <h1>¡Pedido Confirmado!</h1>
+            <p>Gracias <strong><%= nombre %></strong> por tu compra.</p>
+            <p>Tu pedido será enviado a: <strong><%= direccion %></strong></p>
+            <p>Método de pago: <strong><%= metodoPago %></strong></p>
+
+            <section class="order-summary">
+                <h3>Resumen del Pedido</h3>
+                <div class="summary-box">
+                    <% if (cart.length > 0) { %>
+                        <% cart.forEach(item => { %>
+                            <div class="summary-item">
+                                <img src="<%= item.image %>" alt="<%= item.name %>" class="item-img">
+                                <p><%= item.name %> (x<%= item.quantity %>)</p>
+                                <p>Subtotal: <%= item.subtotal %> puntos</p>
+                            </div>
+                        <% }) %>
+                        <hr>
+                        <p class="total-text">Total Puntos: <strong><%= total %></strong></p>
+                    <% } else { %>
+                        <p>No hay productos en el carrito.</p>
+                    <% } %>
+                </div>
+            </section>
+
+            <div style="margin-top:20px;">
+                <a href="/" class="btn-primary">Volver al inicio</a>
+                <a href="/cart" class="btn-primary">Volver al carrito</a>
+            </div>
+        </div>
+    </main>
+
+    <%- include('../partials/footer') %>
+</body>
+</html>
