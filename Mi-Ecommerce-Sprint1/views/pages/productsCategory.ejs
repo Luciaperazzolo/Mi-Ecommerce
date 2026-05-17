@@ -1,4 +1,8 @@
 <%- include('../partials/header') %>
+
+<link rel="stylesheet" href="/CSS/header.css">
+<link rel="stylesheet" href="/CSS/footer.css">
+
 <link rel="stylesheet" href="/css/product.css">
 
 <main class="contenedor-detalle">
@@ -28,7 +32,7 @@
                             </div>
                         </a>
 
-                        <!-- REQUERIMIENTO #11: Botón de agregar deshabilitado -->
+                        <!--#11: Botón de agregar deshabilitado -->
                         <div style="padding: 10px; text-align: center;">
                             <button class="btn-agregar" <%= p.stock === 0 ? 'disabled' : '' %> 
                                     style="width: 100%; cursor: <%= p.stock === 0 ? 'not-allowed' : 'pointer' %>;">
@@ -38,7 +42,7 @@
                     </article>
                 <% }); %>
             <% } else { %>
-                <!-- REQUERIMIENTO #10: Mensaje amigable -->
+                <! Mensaje amigable -->
                 <div style="padding: 20px;">
                     <p>Lo sentimos, actualmente no tenemos productos disponibles en la categoría "<%= categoryName %>".</p>
                     <a href="/">Volver al inicio</a>
