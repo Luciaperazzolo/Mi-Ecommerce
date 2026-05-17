@@ -28,20 +28,25 @@ main {
     border-radius: 20px; /* Bordes redondeados de la cápsula */
 }
 
-/* Cada ítem individual */
+/*  Cada icono individual */ 
+
+/*  Le da el espacio a los costados para que el texto no pegue en la línea */
 .category-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: white;
-    flex: 1; /* Distribuye espacio equitativo */
-    cursor: pointer;
-    transition: transform 0.2s;
+    padding: 0 12px !important;
+}
+/*  Dibuja la línea divisoria blanca entre cada categoría */
+.category-item:not(:last-child) {
+    border-right: 1px solid rgba(255, 255, 255, 0.3) !important;
 }
 
-/* El efecto de las líneas blancas separadoras */
-.category-item:not(:last-child) {
-    border-right: 1px solid rgba(255, 255, 255, 0.3); /* Línea sutil */
+/* El enlace limpio,  saca el azul, el subrayado y centra el contenido */
+.category-item a {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    color: white !important;
+    text-decoration: none !important;
+    width: 100% !important;
 }
 
 /* Iconos */
