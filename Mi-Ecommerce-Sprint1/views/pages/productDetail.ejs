@@ -1,0 +1,131 @@
+<%- include('../partials/header') %>
+
+<link rel="stylesheet" href="/CSS/header.css">
+<link rel="stylesheet" href="/CSS/footer.css">
+
+<link rel="stylesheet" href="/css/product.css">
+
+
+<main class="contenedor-detalle">
+    <nav class="breadcrumb">
+        <a href="/">Volver al listado</a> | <span><%= product.category %></span>
+    </nav>
+
+    <section class="producto-principal">
+        <div class="galeria-fotos">
+            
+            <!-- para que el cartelito se ubique bien -->
+            <div class="foto-grande" style="position: relative;">
+                <% if (product.stock === 0) { %>
+                    <div class="badge-sin-stock">SIN STOCK</div>
+                <% } %>
+                <img src="/Imagenes-productos/<%= product.image %>" 
+                     alt="<%= product.name %>" 
+                     class="<%= product.stock === 0 ? 'imagen-agotada' : '' %>">
+            </div>
+        </div>
+             
+        <div class="info-compra">
+            <h1><%= product.name %></h1>
+            <div class="precio-puntos">
+                <span class="monto"><%= product.price %></span>
+                <span class="label-puntos">PUNTOS</span>
+            </div>
+            
+            <!-- Botón deshabilitado y con texto cambiado si no hay stock -->
+            <button class="btn-agregar" <%= product.stock === 0 ? 'disabled' : '' %>>
+                <%= product.stock === 0 ? 'SIN STOCK' : 'Agregar al Carrito' %>
+            </button>
+
+            <div class="texto-descripcion">
+                <p><%= product.description %></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="relacionados">
+        <h3>También te puede interesar</h3>
+        <div class="grilla-productos">
+            
+            <% relatedProducts.forEach(similar => { %>
+                <article class="tarjeta-chica" style="position: relative;">
+                    <!-- Lógica de stock para los relacionados también -->
+                    <% if (similar.stock === 0) { %>
+                        <div class="badge-sin-stock-chico">SIN STOCK</div>
+                    <% } %>
+                    <a href="/products/<%= similar.id %>" style="text-decoration: none; color: inherit;">
+                        <img src="/Imagenes-productos/<%= similar.image %>" 
+                             alt="<%= similar.name %>"
+                             class="<%= similar.stock === 0 ? 'imagen-agotada' : '' %>">
+                        <div class="cuerpo-tarjeta">
+                            <p class="nombre-relacionado"><%= similar.name %></p>
+                            <div class="precio-relacionado">
+                                <span class="puntos"><%= similar.price %></span>
+                                <span class="label">PUNTOS</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            <% }); %>
+
+            <% if (relatedProducts.length == 0) { %>
+                <p>No hay productos relacionados disponibles.</p>
+            <% } %>
+
+        </div>
+    </section>
+
+    <!--  barra de categorías  -->
+    <section class="barra-categorias-oscura">
+        <div class="item-cat">
+            <a href="/products/category/Electronica" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/electronica.png" alt="Electronica">
+                <span>Electrónica</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Alimentos" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/alimentos.png" alt="Alimentos">
+                <span>Alimentos</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Bebidas" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/bebidas.png" alt="Bebidas">
+                <span>Bebidas</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Indumentaria" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/indumentaria.png" alt="Indumentaria">
+                <span>Indumentaria</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Juegos" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/juegos.png" alt="Juegos">
+                <span>Juegos</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Automotor" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/automotor.png" alt="Automotor">
+                <span>Automotor</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Hogar" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/hogar.png" alt="Hogar">
+                <span>Hogar</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Otros" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/otros.png" alt="Otros">
+                <span>Otros</span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<%- include('../partials/footer') %>
