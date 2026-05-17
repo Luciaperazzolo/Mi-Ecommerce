@@ -4,18 +4,16 @@
 <link rel="stylesheet" href="/CSS/footer.css">
 
 <link rel="stylesheet" href="/css/product.css">
-
 <main class="contenedor-detalle">
-    <h1 style="padding: 20px;">Explorando: <%= categoryName %></h1>
+    <h1 >Todos Nuestros Productos</h1>
 
     <section class="relacionados">
         <div class="grilla-productos">
+            
             <% if (products.length > 0) { %>
                 <% products.forEach(p => { %>
-                    <!-- Agregamos una clase condicional si no hay stock -->
                     <article class="tarjeta-chica <%= p.stock === 0 ? 'sin-stock-container' : '' %>" style="position: relative;">
                         
-                        <!-- REQUERIMIENTO #11: Badge visual -->
                         <% if (p.stock === 0) { %>
                             <div class="badge-agotado">Sin stock</div>
                         <% } %>
@@ -32,7 +30,6 @@
                             </div>
                         </a>
 
-                        <!--#11: Botón de agregar deshabilitado -->
                         <div style="padding: 10px; text-align: center;">
                             <button class="btn-agregar" <%= p.stock === 0 ? 'disabled' : '' %> 
                                     style="width: 100%; cursor: <%= p.stock === 0 ? 'not-allowed' : 'pointer' %>;">
@@ -42,12 +39,46 @@
                     </article>
                 <% }); %>
             <% } else { %>
-                <! Mensaje amigable -->
-                <div style="padding: 20px;">
-                    <p>Lo sentimos, actualmente no tenemos productos disponibles en la categoría "<%= categoryName %>".</p>
-                    <a href="/">Volver al inicio</a>
+                <div style="padding: 20px; color: white;">
+                    <p>No hay productos disponibles actualmente.</p>
                 </div>
             <% } %>
+
+        </div>
+    </section>
+
+    <section class="barra-categorias-oscura">
+        <div class="item-cat">
+            <a href="/products/category/Electronica" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/electronica.png" alt="Electronica"><span>Electrónica</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Alimentos" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/alimentos.png" alt="Alimentos"><span>Alimentos</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Bebidas" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/bebidas.png" alt="Bebidas"><span>Bebidas</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Indumentaria" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/indumentaria.png" alt="Indumentaria"><span>Indumentaria</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Juegos" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/juegos.png" alt="Juegos"><span>Juegos</span>
+            </a>
+        </div>
+        <div class="item-cat">
+            <a href="/products/category/Automotor" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
+                <img src="/imagenes-index/automotor.png" alt="Automotor"><span>Automotor</span>
+            </a>
         </div>
     </section>
 </main>
+
+<%- include('../partials/footer') %>
