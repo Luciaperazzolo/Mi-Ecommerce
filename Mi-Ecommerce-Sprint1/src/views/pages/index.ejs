@@ -1,212 +1,236 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Inicio - MiEcommerce</title>
-        <link rel="stylesheet" href="/CSS/header.css">
-        <link rel="stylesheet" href="/CSS/footer.css">
-        <link rel="stylesheet" href="/CSS/index.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - MiEcommerce</title>
 
-    
-    <body>
-       
-       <!-- HEADER -->
+    <link rel="stylesheet" href="/CSS/header.css">
+    <link rel="stylesheet" href="/CSS/footer.css">
+    <link rel="stylesheet" href="/CSS/index.css">
+    <link rel="stylesheet" href="/CSS/product.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+    <!-- HEADER -->
     <%- include('../partials/header') %>
 
     <!-- CONTENIDO PRINCIPAL -->
-
-        <main>
-            <!-- BARRA DE CATEGORIAS -->
-    <section class="categories-container">
-    <div class="category-item">
-        <a href="/products/category/Electronica">
-            <img src="/imagenes-index/electronica.png" alt="Electrónica">
-            <span>Electrónica</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Alimentos">
-            <img src="/imagenes-index/alimentos.png" alt="Alimentos">
-            <span>Alimentos</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Bebidas">
-            <img src="/imagenes-index/bebidas.png" alt="Bebidas">
-            <span>Bebidas</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Indumentaria">
-            <img src="/imagenes-index/indumentaria.png" alt="Indumentaria">
-            <span>Indumentaria</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Juegos">
-            <img src="/imagenes-index/juegos.png" alt="Juegos">
-            <span>Juegos</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Automotor">
-            <img src="/imagenes-index/automotor.png" alt="Automotor">
-            <span>Automotor</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Hogar">
-            <img src="/imagenes-index/hogar.png" alt="Hogar">
-            <span>Hogar</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Otros">
-            <img src="/imagenes-index/otros.png" alt="Otros">
-            <span>Otros</span>
-        </a>
-    </div>
-</section>
-
-
-
-
-
-         <!-- ProductHero  -->
-        <section class="banner-promociones">
-    <div class="contenedor-publicidades">
+    <main>
         
-        <div class="tarjeta-publicidad publico-disney">
-            <div class="contenido-tarjeta-info">
-                <div class="contenedor-logo-promo">
-                    <img src="/imagenes-index/disney.jpg" alt="Logo Disney+">
+        <!-- BARRA DE CATEGORIAS -->
+        <section class="categories-container">
+            <div class="category-item">
+                <a href="/products/category/Electronica">
+                    <img src="/imagenes-index/electronica.png" alt="Electrónica">
+                    <span>Electrónica</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Alimentos">
+                    <img src="/imagenes-index/alimentos.png" alt="Alimentos">
+                    <span>Alimentos</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Bebidas">
+                    <img src="/imagenes-index/bebidas.png" alt="Bebidas">
+                    <span>Bebidas</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Indumentaria">
+                    <img src="/imagenes-index/indumentaria.png" alt="Indumentaria">
+                    <span>Indumentaria</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Juegos">
+                    <img src="/imagenes-index/juegos.png" alt="Juegos">
+                    <span>Juegos</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Automotor">
+                    <img src="/imagenes-index/automotor.png" alt="Automotor">
+                    <span>Automotor</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Hogar">
+                    <img src="/imagenes-index/hogar.png" alt="Hogar">
+                    <span>Hogar</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Otros">
+                    <img src="/imagenes-index/otros.png" alt="Otros">
+                    <span>Otros</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- PRODUCT HERO -->
+        <section class="banner-promociones">
+            <div class="contenedor-publicidades">
+                <div class="tarjeta-publicidad publico-disney">
+                    <div class="contenido-tarjeta-info">
+                        <div class="contenedor-logo-promo">
+                            <img src="/imagenes-index/disney.jpg" alt="Logo Disney+">
+                        </div>
+                        <div class="contenedor-texto-promo">
+                            <p class="titulo-promo">
+                                50% OFF en Combo Plus
+                            </p>
+                            <p class="detalle-promo">
+                                Canjeando 50.000 puntos MiEcommerce.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="contenedor-texto-promo">
-                    <p class="titulo-promo">50% OFF en Combo Plus</p>
-                    <p class="detalle-promo">Canjeando 50.000 puntos MiEcommerce.</p>
+
+                <div class="tarjeta-publicidad publico-hbo">
+                    <div class="contenido-tarjeta-info">
+                        <div class="contenedor-logo-promo">
+                            <img src="/imagenes-index/hbo.webp" alt="Logo HBO Max">
+                        </div>
+                        <div class="contenedor-texto-promo">
+                            <p class="titulo-promo">
+                                50% OFF en HBO Max
+                            </p>
+                            <p class="detalle-promo">
+                                Canjeando 50.000 puntos MiEcommerce.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="tarjeta-publicidad publico-hbo">
-            <div class="contenido-tarjeta-info">
-                <div class="contenedor-logo-promo">
-                    <img src="/imagenes-index/hbo.webp" alt="Logo HBO Max">
-                </div>
-                <div class="contenedor-texto-promo">
-                    <p class="titulo-promo">50% OFF en HBO Max</p>
-                    <p class="detalle-promo">Canjeando 50.000 puntos MiEcommerce.</p>
-                </div>
+          <!-- PRODUCTOS SUGERIDOS -->
+        <section class="productos-seccion">
+            <h3>Te puede interesar</h3>
+            <div class="grilla-productos">
+                <% if (suggestedProducts && suggestedProducts.length > 0) { %>
+                    <% suggestedProducts.forEach(product => { %>
+                        <article class="tarjeta-chica">
+                            <a href="/products/<%= product.id %>" style="text-decoration: none; color: inherit;">
+                                <img src="/Imagenes-productos/<%= product.image || 'fallback.png' %>" alt="<%= product.name %>">
+                                <div class="cuerpo-tarjeta">
+                                    <p class="nombre-relacionado"><%= product.name %></p>
+                                    <div class="precio-relacionado">
+                                        <span class="puntos"><%= product.price %></span>
+                                        <span class="label">PUNTOS</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                    <% }) %>
+                <% } else { %>
+                    <p>No hay productos sugeridos.</p>
+                <% } %>
             </div>
-        </div>
-
-    </div>
-</section>
+        </section>
 
 
-
-
-
-
-    <!-- PARTE DE PRODUCTOS -->
-    <section class="productos-seccion">
-    <h3>Te puede interesar</h3>
-    <div class="productos-grid">
-        <div class="producto-card">
-            <div class="producto-imagen-vacia"></div>
-            <div class="producto-info">
-                <div class="info-izquierda">
-                    <p class="nombre-placeholder">NOMBRE DEL PRODUCTO</p>
-                </div>
-                <div class="info-derecha">
-                    <p class="puntos-placeholder">XX.XXX</p>
-                    <span>PUNTOS</span>
-                </div>
-            </div>
-        </div>
-        <div class="producto-card"><div class="producto-imagen-vacia"></div><div class="producto-info"><div class="info-izquierda"><p>NOMBRE DEL PRODUCTO</p></div><div class="info-derecha"><p>XX.XXX</p><span>PUNTOS</span></div></div></div>
-        <div class="producto-card"><div class="producto-imagen-vacia"></div><div class="producto-info"><div class="info-izquierda"><p>NOMBRE DEL PRODUCTO</p></div><div class="info-derecha"><p>XX.XXX</p><span>PUNTOS</span></div></div></div>
-        <div class="producto-card"><div class="producto-imagen-vacia"></div><div class="producto-info"><div class="info-izquierda"><p>NOMBRE DEL PRODUCTO</p></div><div class="info-derecha"><p>XX.XXX</p><span>PUNTOS</span></div></div></div>
-    </div>
-
+        <!-- LOS MÁS PEDIDOS -->
+<section class="productos-seccion">
     <h3>Los más pedidos</h3>
-    <div class="productos-grid">
-        <div class="producto-card"><div class="producto-imagen-vacia"></div><div class="producto-info"><div class="info-izquierda"><p>NOMBRE DEL PRODUCTO</p></div><div class="info-derecha"><p>XX.XXX</p><span>PUNTOS</span></div></div></div>
-        <div class="producto-card"><div class="producto-imagen-vacia"></div><div class="producto-info"><div class="info-izquierda"><p>NOMBRE DEL PRODUCTO</p></div><div class="info-derecha"><p>XX.XXX</p><span>PUNTOS</span></div></div></div>
-        <div class="producto-card"><div class="producto-imagen-vacia"></div><div class="producto-info"><div class="info-izquierda"><p>NOMBRE DEL PRODUCTO</p></div><div class="info-derecha"><p>XX.XXX</p><span>PUNTOS</span></div></div></div>
-        <div class="producto-card"><div class="producto-imagen-vacia"></div><div class="producto-info"><div class="info-izquierda"><p>NOMBRE DEL PRODUCTO</p></div><div class="info-derecha"><p>XX.XXX</p><span>PUNTOS</span></div></div></div>
-    </div>
-</section>
-
- <!-- BARRA DE CATEGORIAS REPETIDA AL FINAL-->
-     <!-- BARRA DE CATEGORIAS -->
-    <section class="categories-container">
-    <div class="category-item">
-        <a href="/products/category/Electronica">
-            <img src="/imagenes-index/electronica.png" alt="Electrónica">
-            <span>Electrónica</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Alimentos">
-            <img src="/imagenes-index/alimentos.png" alt="Alimentos">
-            <span>Alimentos</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Bebidas">
-            <img src="/imagenes-index/bebidas.png" alt="Bebidas">
-            <span>Bebidas</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Indumentaria">
-            <img src="/imagenes-index/indumentaria.png" alt="Indumentaria">
-            <span>Indumentaria</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Juegos">
-            <img src="/imagenes-index/juegos.png" alt="Juegos">
-            <span>Juegos</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Automotor">
-            <img src="/imagenes-index/automotor.png" alt="Automotor">
-            <span>Automotor</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Hogar">
-            <img src="/imagenes-index/hogar.png" alt="Hogar">
-            <span>Hogar</span>
-        </a>
-    </div>
-    <div class="category-item">
-        <a href="/products/category/Otros">
-            <img src="/imagenes-index/otros.png" alt="Otros">
-            <span>Otros</span>
-        </a>
+    <div class="grilla-productos">
+        <% if (popularProducts && popularProducts.length > 0) { %>
+            <% popularProducts.forEach(product => { %>
+                <article class="tarjeta-chica">
+                    <a href="/products/<%= product.id %>" style="text-decoration: none; color: inherit;">
+                        <img src="/Imagenes-productos/<%= product.image || 'fallback.png' %>" alt="<%= product.name %>">
+                        <div class="cuerpo-tarjeta">
+                            <p class="nombre-relacionado"><%= product.name %></p>
+                            <div class="precio-relacionado">
+                                <span class="puntos"><%= product.price %></span>
+                                <span class="label">PUNTOS</span>
+                            </div>
+                        </div>
+                    </a>
+                </article>
+            <% }) %>
+        <% } else { %>
+            <p>No hay productos destacados.</p>
+        <% } %>
     </div>
 </section>
 
 
+        <!-- BARRA DE CATEGORIAS REPETIDA -->
 
+        <section class="categories-container">
+            <div class="category-item">
+                <a href="/products/category/Electronica">
+                    <img src="/imagenes-index/electronica.png" alt="Electrónica">
+                    <span>Electrónica</span>
+                </a>
+            </div>
 
+            <div class="category-item">
+                <a href="/products/category/Alimentos">
+                    <img src="/imagenes-index/alimentos.png" alt="Alimentos">
+                    <span>Alimentos</span>
+                </a>
+            </div>
 
+            <div class="category-item">
+                <a href="/products/category/Bebidas">
+                    <img src="/imagenes-index/bebidas.png" alt="Bebidas">
+                    <span>Bebidas</span>
+                </a>
+            </div>
 
+            <div class="category-item">
+                <a href="/products/category/Indumentaria">
+                    <img src="/imagenes-index/indumentaria.png" alt="Indumentaria">
+                    <span>Indumentaria</span>
+                </a>
+            </div>
 
+            <div class="category-item">
+                <a href="/products/category/Juegos">
+                    <img src="/imagenes-index/juegos.png" alt="Juegos">
+                    <span>Juegos</span>
+                </a>
+            </div>
 
-</main>
+            <div class="category-item">
+                <a href="/products/category/Automotor">
+                    <img src="/imagenes-index/automotor.png" alt="Automotor">
+                    <span>Automotor</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Hogar">
+                    <img src="/imagenes-index/hogar.png" alt="Hogar">
+                    <span>Hogar</span>
+                </a>
+            </div>
+
+            <div class="category-item">
+                <a href="/products/category/Otros">
+                    <img src="/imagenes-index/otros.png" alt="Otros">
+                    <span>Otros</span>
+                </a>
+            </div>
+        </section>
+    </main>
 
     <!-- FOOTER -->
     <%- include('../partials/footer') %>
 
-    </body>
-
-
-</html>
+</body>
+</html> 

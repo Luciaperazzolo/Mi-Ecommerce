@@ -1,9 +1,8 @@
-const express = require("express"); //Importamos Express para usar rutas
-const router = express.Router(); //Creamos router, manejador de rutas
+const express = require("express");
+const router = express.Router();
 
-const mainController = require("../controllers/mainController"); //Traemos controller, importa el archivo
+const mainController = require("../controllers/mainController");
 
-router.get("/", mainController.index);  //ejecuta: mainController.index
-router.get("/product", mainController.product);
+router.get("/", mainController.index); // Ruta de inicio
 
-module.exports = router; //Exportamos rutas para usarlo en app.js
+module.exports = router;

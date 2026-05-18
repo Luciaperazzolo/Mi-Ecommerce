@@ -4,11 +4,12 @@ const cartService = require('../services/cartService');
 const productsController = {
     //  Muestra  todos los productos juntos '
     catalogo: (req, res) => {
-        const todosLosProductos = productModel.findAll();
-        res.render('pages/products', { 
-            products: todosLosProductos 
-        });
-    },
+    const todosLosProductos = productModel.findAll();
+    res.render('pages/products', { 
+        products: todosLosProductos 
+    });
+},
+
 
     //  Muestra un solo producto por su ID)
     detalle: (req, res) => {
