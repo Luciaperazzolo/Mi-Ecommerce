@@ -4,7 +4,7 @@
   "name": "Whiskey Jack Daniels",
   "category": "Bebidas",
   "price": 19900,
-  "stock": 5,
+  "stock": 0,
   "image": "Jack Daniels.jpg",
   "image2": "productos1.png", 
   "image3": "productos2.png",
@@ -25,7 +25,7 @@
     "name": "Vino Tinto Reserva",
     "category": "Bebidas",
     "price": 8500,
-    "stock": 4,
+    "stock": 0,
     "image": "vino.png",
     "description": "Vino tinto reserva, de calidad premium."
   },
@@ -52,7 +52,7 @@
     "name": "Licor Something",
     "category": "Bebidas",
     "price": 30000,
-    "stock": 10,
+    "stock": 0,
     "image": "producto4.png",
     "description": "Licor Something, con sabor único."
   },
@@ -69,7 +69,7 @@
     "id": 8,
     "name": "Salchichas Frescas",
     "price": 1500,
-    "stock": 5,
+    "stock": 0,
     "description": "Salchichas frescas de cerdo, ideales para asados y parrilladas...",
     "category": "Alimentos",
     "image": "producto6.png"
@@ -87,7 +87,7 @@
     "id": 10,
     "name": "Papas Lays",
     "price": 500,
-    "stock": 12,
+    "stock": 0,
     "description": "Las mejores papitas para acompañar tus bebidas...",
     "category": "Alimentos",
     "image": "producto8.png"
