@@ -3,6 +3,13 @@ const router = express.Router();
 
 const mainController = require("../controllers/mainController");
 
-router.get("/", mainController.index); // Ruta de inicio
+// PÁGINA PRINCIPAL
+router.get("/", mainController.index);
+
+// PÁGINA DE LOGIN - Sprint 1 US4
+router.get("/login", mainController.login);
+
+// PÁGINA DE REGISTRO - Sprint 1 US3
+router.get("/register", mainController.register);
 
 module.exports = router;
