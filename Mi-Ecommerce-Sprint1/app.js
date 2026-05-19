@@ -43,6 +43,12 @@ app.use((req, res) => {
     res.status(404).render("pages/404");
 });
 
+//--- ERROR 500 ---
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).render('pages/500');
+});
+
 //--- PUESTA EN MARCHA ---
 app.listen(3000, () => { // Encender servidor
     console.log("Servidor corriendo en http://localhost:3000");
