@@ -2,18 +2,22 @@ const express = require('express');
 const router = express.Router();
 const productsController = require('../controllers/productsController');
 
-//  Catálogo con todos los productos juntos
+// Catálogo con todos los productos juntos
 router.get('/', productsController.catalogo);
 
-//Filtra al tocar la barra oscura
-// URL: localhost:3000/products/category/Alimentos
+// Filtra al tocar la barra oscura
+
 router.get('/category/:name', productsController.categoria);
 
-//  Muestra un solo producto por su ID
+// Buscador de productos
+// URL: localhost:3000/products/search?query=palabra
+router.get('/search', productsController.buscar);
+
+// Muestra un solo producto por su ID
 // URL: localhost:3000/products/1
 router.get('/:id', productsController.detalle);
 
-//Ruta para confirmar la compra.
+// Ruta para confirmar la compra.
 router.post('/confirm', productsController.confirm);
 
 module.exports = router;

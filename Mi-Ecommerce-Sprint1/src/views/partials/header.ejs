@@ -1,25 +1,27 @@
-<!--ENCABEZADO CON LOGO Y BUSCADOR-->
-        <header class="main-header">
-            <a href="/" class="logo" style="text-decoration: none;">Mi<span>Ecommerce</span></a>
-            <div class="search-container">
-                <input type="text" placeholder="Buscar productos..." class="search-bar">
-                <i class="fas fa-search search-icon"></i>
-            </div>
-            
-            <!-- Iconos de usuario y carrito -->
-            <div class="header-icons">
-                <a href="/products" class="link-productos-header">Productos</a>
-                   <div class="cart-wrapper">
-                        <a href="/cart">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="cart-badge"><%= cartCount %></span>
-                        </a>
-                    </div>
-                <div class="user-profile">
-                    <i class="fas fa-user user-icon"></i>
-                    <span>Usuario</span>
-                </div>
-            </div>
-        </header>
+<header class="main-header">
+    <a href="/" class="logo" style="text-decoration: none;">Mi<span>Ecommerce</span></a>
+    
+    <form action="/products/search" method="GET" class="search-container">
+        <input type="text" name="query" placeholder="Buscar productos..." class="search-bar">
+        
+        <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+            <i class="fas fa-search search-icon"></i>
+        </button>
+    </form>
+    
+    <div class="header-icons">
+        <a href="/products" class="link-productos-header">Productos</a>
+        <div class="cart-wrapper">
+            <a href="/cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge"><%= cartCount %></span>
+            </a>
+        </div>
+        <div class="user-profile">
+            <i class="fas fa-user user-icon"></i>
+            <span>Usuario</span>
+        </div>
+    </div>
+</header>
 
 
