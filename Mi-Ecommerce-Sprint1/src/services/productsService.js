@@ -1,79 +1,60 @@
-const productModel = require('../models/productModel');
+const path = require('path');
+const Database = require('better-sqlite3');
+
+// Conectamos con la base de datos
+const db = new Database(path.join(__dirname, '../db/ecommerce.db'));
 
 const productsService = {
-    // Valida y normaliza el ID
+    //  Normalizar ID
     normalizeId: (id) => {
         const parsed = Number(id);
-        // Si no es un número válido (NaN) o es menor o igual a cero, devuelve null
         if (isNaN(parsed) || parsed <= 0) {
             return null;
         }
         return parsed;
     },
 
-    // Retorna todos los productos (y soporta ordenamiento por precio)
+    // Traer todos los productos (con o sin orden)
     getAll: (sortOrder) => {
-        const todos = productModel.findAll();
-        
-        // Clonamos el array con el operador spread, para no alterar el orden del JSON original en memoria
-        let sortedProducts = [...todos]; 
-
+        let query = 'SELECT * FROM products';
         if (sortOrder === 'asc') {
-            // Ordena de menor a mayor precio
-            return sortedProducts.sort((a, b) => a.price - b.price);
-        } 
-        
-        if (sortOrder === 'desc') {
-            // Ordena de mayor a menor precio
-            return sortedProducts.sort((a, b) => b.price - a.price);
+            query += ' ORDER BY price ASC';
+        } else if (sortOrder === 'desc') {
+            query += ' ORDER BY price DESC';
         }
-        
-        // Si no viene parámetro de orden, devuelve la lista original
-        return sortedProducts;
+        return db.prepare(query).all();
     },
 
-    //  Busca productos por nombre 
+    //  Buscador del Header
     searchByName: (query) => {
-        const todos = productModel.findAll();
-        
-        if (!query) return todos; // Si mandan el buscador vacío, devuelve todo el catálogo
-
-        // Filtra buscando si el nombre incluye la palabra tipeada por el usuario
-        return todos.filter(p => 
-            p.name.toLowerCase().includes(query.toLowerCase())
-        );
+        if (!query) {
+            return db.prepare('SELECT * FROM products').all();
+        }
+        return db.prepare('SELECT * FROM products WHERE name LIKE ?').all(`%${query}%`);
     },
 
-    // Ahora recibe el ID ya normalizado
+    // Detalle de un producto por ID
     getById: (id) => {
-        const todos = productModel.findAll();
-        return todos.find(p => p.id === id);
+        return db.prepare('SELECT * FROM products WHERE id = ?').get(id);
     },
 
-    // Se lleva la lógica de filtrado por categoría
+    // Filtra por Categoría
     getByCategory: (categoryName) => {
-        const todos = productModel.findAll();
-        return todos.filter(p => p.category.toLowerCase() === categoryName.toLowerCase());
+        return db.prepare('SELECT * FROM products WHERE LOWER(category) = LOWER(?)').all(categoryName);
     },
 
-    // Se lleva la lógica de buscar y mezclar los productos relacionados
+    // Productos Relacionados
     getRelated: (product) => {
-        const allProducts = productModel.findAll();
-        let related = allProducts.filter(p => p.id != product.id && p.category == product.category);
-        
-        // Mezcla aleatoria
-        related.sort(() => Math.random() - 0.5);
-        
-        // Retorna solo los primeros 4
-        return related.slice(0, 4);
+        return db.prepare(
+            'SELECT * FROM products WHERE id != ? AND category = ? ORDER BY RANDOM() LIMIT 4'
+        ).all(product.id, product.category);
     },
 
-    // Se lleva la lógica de armar el carrito detallado para la confirmación
+    // Detalle del Carrito
     getDetailedCart: (cartSession) => {
         return cartSession.map(item => {
-            const productDetail = productModel.findById(item.productId);
+            const productDetail = db.prepare('SELECT * FROM products WHERE id = ?').get(item.productId);
             if (!productDetail) return null;
-            
             return {
                 id: productDetail.id,
                 name: productDetail.name,
@@ -83,6 +64,46 @@ const productsService = {
                 subtotal: productDetail.price * item.quantity
             };
         }).filter(item => item !== null);
+    },
+
+
+    //  crea un    nuevo producto
+    create: (productData) => {
+        const query = `
+            INSERT INTO products (name, description, price, image, category, stock)
+            VALUES (?, ?, ?, ?, ?, ?)
+        `;
+        return db.prepare(query).run(
+            productData.name,
+            productData.description,
+            productData.price,
+            productData.image,
+            productData.category,
+            productData.stock || 0
+        );
+    },
+
+    // EDITA un producto existente
+    update: (id, productData) => {
+        const query = `
+            UPDATE products 
+            SET name = ?, description = ?, price = ?, image = ?, category = ?, stock = ?
+            WHERE id = ?
+        `;
+        return db.prepare(query).run(
+            productData.name,
+            productData.description,
+            productData.price,
+            productData.image,
+            productData.category,
+            productData.stock || 0,
+            id
+        );
+    },
+
+    // borra un producto
+    delete: (id) => {
+        return db.prepare('DELETE FROM products WHERE id = ?').run(id);
     }
 };
 

@@ -1,4 +1,5 @@
 //--- IMPORTACIÓN DE MÓDULOS ---
+require('./src/db/database'); // Importamos la configuración de la base de datos 
 const express = require("express"); //Traigo la herramienta Express
 const session = require('express-session'); //Traigo el módulo de sesiones para manejar el carrito de compras
 const path = require("path"); //Módulo nativo para trabajar con rutas de carpetas
