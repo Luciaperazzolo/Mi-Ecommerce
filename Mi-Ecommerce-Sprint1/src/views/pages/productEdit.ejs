@@ -1,0 +1,35 @@
+<main class="contenedor-detalle">
+    <h1>Editar Producto (ID: <%= product.id %>)</h1>
+        
+    <form action="/products/<%= product.id %>" method="POST" style="display: flex; flex-direction: column; gap: 15px; max-width: 400px;">
+        <div>
+            <label>Nombre del Producto:</label>
+            <input type="text" name="name" value="<%= product.name %>" required style="width: 100%;">
+        </div>
+        <div>
+            <label>Precio (Puntos):</label>
+            <input type="number" name="price" value="<%= product.price %>" required style="width: 100%;">
+        </div>
+        <div>
+            <label>Categoría:</label>
+            <input type="text" name="category" value="<%= product.category %>" required style="width: 100%;">
+        </div>
+        <div>
+            <label>Stock:</label>
+            <input type="number" name="stock" value="<%= product.stock %>" style="width: 100%;">
+        </div>
+        <div>
+            <label>Nombre de la Imagen:</label>
+            <input type="text" name="image" value="<%= product.image %>" style="width: 100%;">
+        </div>
+        <div>
+            <label>Descripción:</label>
+            <textarea name="description" rows="4" style="width: 100%;"><%= product.description %></textarea>
+        </div>
+        
+        <button type="submit" class="btn-agregar">Guardar Cambios</button>
+    </form>
+
+    <br>
+    <a href="/products/<%= product.id %>" style="color: #666; text-decoration: none;">← Cancelar y volver al detalle</a>
+</main>

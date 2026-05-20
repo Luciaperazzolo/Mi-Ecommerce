@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MiEcommerce</title>
+    <link rel="stylesheet" href="/CSS/auth.css">
+</head>
+<body>
+
+    <main>
+        <h2>Iniciar Sesión</h2>
+
+        <form action="/login" method="POST">
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+
+            <label for="password">Contraseña</label>
+            <input id="password" name="password" type="password" required>
+
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+
+        <p>¿No tenés cuenta?</p>
+        <a href="/register">Registrarse</a>
+
+        <a href="/">Volver al inicio</a>
+    </main>
+
+</body>
+</html>

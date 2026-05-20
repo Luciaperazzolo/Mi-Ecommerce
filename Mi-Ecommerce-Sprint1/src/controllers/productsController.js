@@ -2,9 +2,9 @@ const productsService = require('../services/productsService');
 const cartService = require('../services/cartService'); 
 
 const productsController = {
-    //  Muestra todos los productos juntos (soporta ordenamiento por precio ?sort=asc o ?sort=desc)
+    // Muestra todos los productos juntos (soporta ordenamiento por precio ?sort=asc o ?sort=desc)
     catalogo: (req, res) => {
-        const sortOrder = req.query.sort; // Captura el parámetro de ordenamiento de la URL
+        const sortOrder = req.query.sort; 
         
         // Le pasamos el parámetro al servicio para que nos traiga la lista ordenada
         const todosLosProductos = productsService.getAll(sortOrder);
@@ -14,33 +14,35 @@ const productsController = {
         });
     },
 
-    //  Muestra un solo producto por su ID y sus relacionados
+    // Muestra el detalle de un solo producto por su ID
     detalle: (req, res) => {
-        const idParam = req.params.id;
+        const validacion = productsService.normalizeId(req.params.id);
+
+  
+        if (validacion.error === 400) {
+            return res.status(400).render('pages/404');
+        }
+
+     
+        if (validacion.error === 404) {
+            return res.status(404).render('pages/404'); 
+        }
+
+        // Si pasó las barreras, buscamos el producto real
+        const producto = productsService.getById(validacion.validId);
         
-        // Validamos y normalizamos el ID usando el servicio
-        const cleanId = productsService.normalizeId(idParam);
-
-        if (cleanId === null) {
-            return res.status(400).send('Bad Request: El ID de producto debe ser un número válido.');
-        }
-
-        // Si el ID es válido, buscamos el producto 
-        const product = productsService.getById(cleanId);
-
-        if (product) {
-            //  filtrar y mezclar los relacionados
-            const relatedProducts = productsService.getRelated(product);
-            res.render('pages/productDetail', { product, relatedProducts });
-        } else {
-            res.status(404).render('pages/404');
-        }
+        
+        const relacionados = productsService.getRelated(producto);
+        
+        res.render('pages/productDetail', { 
+            product: producto,
+            relatedProducts: relacionados 
+        });
     },
-
-    // Filtra por sección 
+    
+    
     categoria: (req, res) => {
         const nombreCategoria = req.params.name; 
-    
         const filtrados = productsService.getByCategory(nombreCategoria);
 
         res.render('pages/productsCategory', { 
@@ -49,12 +51,12 @@ const productsController = {
         });
     },
 
-    //  Muestra el formulario de confirmación de pedido
+    // Muestra el formulario de confirmación de pedido
     confirm: (req, res) => {
         const { nombre, direccion, metodoPago } = req.body;
         const cartSession = req.session.cart || [];
         
-        //  se encarga de armar el carrito detallado con datos reales
+    
         const detailedCart = productsService.getDetailedCart(cartSession);
         const total = detailedCart.reduce((acc, item) => acc + item.subtotal, 0);
 
@@ -67,76 +69,73 @@ const productsController = {
         });
     },
 
-    // Procesa la búsqueda por nombre 
+    // Procesa la búsqueda por nombre del buscador del Header
     buscar: (req, res) => {
         const palabraBuscada = req.query.query; 
         const resultados = productsService.searchByName(palabraBuscada);
 
-    
         res.render('pages/products', { 
             products: resultados, 
             searchQuery: palabraBuscada 
         });
     },
 
-    // Muestra el formulario para crear un producto nuevo
     crearForm: (req, res) => {
-    
-        // (Fijate si con las chicas le pusieron este nombre al archivo .ejs de creación)
         res.render('pages/productCreate'); 
     },
-
-    // Recibe los datos del formulario de creación y los guarda en SQLite
     guardar: (req, res) => {
-    
         productsService.create(req.body);
-        
-        // Redirecciona al catálogo para ver el producto nuevo agregado al final
         res.redirect('/products');
     },
 
-    //  Muestra el formulario para editar un producto existente
+    // Muestra el formulario para editar un producto existente
     editarForm: (req, res) => {
-        const cleanId = productsService.normalizeId(req.params.id);
-        if (cleanId === null) {
-            return res.status(400).send('ID inválido.');
+        const validacion = productsService.normalizeId(req.params.id);
+
+        if (validacion.error === 400) {
+            return res.status(400).render('pages/404');
         }
 
-        const product = productsService.getById(cleanId);
-        if (!product) {
+        if (validacion.error === 404) {
             return res.status(404).render('pages/404');
         }
 
-        // Le pasa el producto encontrado al formulario para que los inputs ya aparezcan llenos
-        // (Fijate si con las chicas le pusieron este nombre al archivo .ejs de edición)
+        const product = productsService.getById(validacion.validId);
         res.render('pages/productEdit', { product });
     },
 
     // Recibe los datos editados y actualiza SQLite
     actualizar: (req, res) => {
-        const cleanId = productsService.normalizeId(req.params.id);
-        if (cleanId === null) {
-            return res.status(400).send('ID inválido.');
+        const validacion = productsService.normalizeId(req.params.id);
+
+        if (validacion.error === 400) {
+            return res.status(400).render('pages/404');
         }
 
-        // Le pasa al servicio el ID y los nuevos datos del formulario (req.body)
-        productsService.update(cleanId, req.body);
+        if (validacion.error === 404) {
+            return res.status(404).render('pages/404');
+        }
+
+        // Le pasa al servicio el ID validado y los nuevos datos (req.body)
+        productsService.update(validacion.validId, req.body);
         
         // Redirecciona al detalle del producto modificado para ver los cambios
-        res.redirect(`/products/${cleanId}`);
+        res.redirect(`/products/${validacion.validId}`);
     },
 
-    //  Elimina un producto de la base de datos
+    // Elimina un producto de la base de datos
     borrar: (req, res) => {
-        const cleanId = productsService.normalizeId(req.params.id);
-        if (cleanId === null) {
-            return res.status(400).send('ID inválido.');
+        const validacion = productsService.normalizeId(req.params.id);
+
+        if (validacion.error === 400) {
+            return res.status(400).render('pages/404');
         }
 
+        if (validacion.error === 404) {
+            return res.status(404).render('pages/404');
+        }
        
-        productsService.delete(cleanId);
-        
-        // Redirecciona al catálogo principal
+        productsService.delete(validacion.validId);
         res.redirect('/products');
     }
 };

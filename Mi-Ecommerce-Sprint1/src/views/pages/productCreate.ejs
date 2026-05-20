@@ -1,0 +1,117 @@
+<style>
+    .crear-contenedor {
+        max-width: 500px;
+        margin: 50px auto; /* Esto lo centra perfectamente en la pantalla */
+        background-color: #ffffff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* Sombra suave y elegante */
+        font-family: sans-serif;
+    }
+    .crear-contenedor h1 {
+        text-align: center;
+        color: #222;
+        margin-bottom: 25px;
+        font-size: 26px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+    }
+    .campo-formulario {
+        margin-bottom: 18px;
+    }
+    .campo-formulario label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: #444;
+        font-size: 14px;
+    }
+    .campo-formulario input, 
+    .campo-formulario textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        box-sizing: border-box; 
+        transition: border-color 0.3s;
+    }
+    .campo-formulario input:focus, 
+    .campo-formulario textarea:focus {
+        border-color: #666; /* Efecto al hacer clic en el input */
+        outline: none;
+    }
+    .campo-formulario textarea {
+        resize: vertical;
+        min-height: 90px;
+    }
+    .btn-guardar {
+        width: 100%;
+        background-color: #222; /* Botón oscuro elegante */
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        margin-top: 15px;
+    }
+    .btn-guardar:hover {
+        background-color: #444;
+    }
+    .link-volver {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        color: #777;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s;
+    }
+    .link-volver:hover {
+        color: #222;
+        text-decoration: underline;
+    }
+</style>
+
+<div class="crear-contenedor">
+    <h1>Cargar Nuevo Producto</h1>
+    
+    <form action="/products" method="POST">
+        <div class="campo-formulario">
+            <label>Nombre del Producto:</label>
+            <input type="text" name="name" required placeholder="Ej: Zapatillas deportivas">
+        </div>
+        
+        <div class="campo-formulario">
+            <label>Precio ($):</label>
+            <input type="number" name="price" required placeholder="Ej: 15000">
+        </div>
+        
+        <div class="campo-formulario">
+            <label>Categoría:</label>
+            <input type="text" name="category" required placeholder="Ej: Indumentaria">
+        </div>
+        
+        <div class="campo-formulario">
+            <label>Stock Inicial:</label>
+            <input type="number" name="stock" value="0">
+        </div>
+        
+        <div class="campo-formulario">
+            <label>Nombre de la Imagen:</label>
+            <input type="text" name="image" placeholder="Ej: producto.png">
+        </div>
+        
+        <div class="campo-formulario">
+            <label>Descripción:</label>
+            <textarea name="description" placeholder="Escribí un detalle del producto..."></textarea>
+        </div>
+        
+        <button type="submit" class="btn-guardar">Guardar Producto</button>
+    </form>
+    
+    <a href="/products" class="link-volver">Volver al catálogo</a>
+</div>

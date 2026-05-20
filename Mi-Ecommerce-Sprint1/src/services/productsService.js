@@ -1,31 +1,43 @@
-const path = require('path');
-const Database = require('better-sqlite3');
-
-// Conectamos con la base de datos
-const db = new Database(path.join(__dirname, '../db/ecommerce.db'));
+const db = require('../db/database');
 
 const productsService = {
-    //  Normalizar ID
+    
+   // Normalizar y validar ID contra la base de datos
     normalizeId: (id) => {
         const parsed = Number(id);
+        
+        // Valida que el ID sea numérico y valido
         if (isNaN(parsed) || parsed <= 0) {
-            return null;
+            return { error: 400, message: 'Bad Request' };
         }
-        return parsed;
+        
+        // Valida que el producto exista en la base de datos
+        const productExists = db.prepare('SELECT id FROM products WHERE id = ?').get(parsed);
+        
+        if (!productExists) {
+            return { error: 404, message: 'Not Found' };
+        }
+        
+        return { validId: parsed };
     },
 
-    // Traer todos los productos (con o sin orden)
+    // Traer todos los productos
     getAll: (sortOrder) => {
         let query = 'SELECT * FROM products';
-        if (sortOrder === 'asc') {
-            query += ' ORDER BY price ASC';
-        } else if (sortOrder === 'desc') {
-            query += ' ORDER BY price DESC';
+        
+        switch (sortOrder) {
+            case 'asc':
+                query += ' ORDER BY price ASC';
+                break;
+            case 'desc':
+                query += ' ORDER BY price DESC';
+                break;
         }
+        
         return db.prepare(query).all();
     },
 
-    //  Buscador del Header
+    // Buscador del Header
     searchByName: (query) => {
         if (!query) {
             return db.prepare('SELECT * FROM products').all();
@@ -38,16 +50,21 @@ const productsService = {
         return db.prepare('SELECT * FROM products WHERE id = ?').get(id);
     },
 
-    // Filtra por Categoría
+
     getByCategory: (categoryName) => {
         return db.prepare('SELECT * FROM products WHERE LOWER(category) = LOWER(?)').all(categoryName);
     },
 
-    // Productos Relacionados
+  
     getRelated: (product) => {
         return db.prepare(
             'SELECT * FROM products WHERE id != ? AND category = ? ORDER BY RANDOM() LIMIT 4'
         ).all(product.id, product.category);
+    },
+
+  
+    getSuggested: () => {
+        return db.prepare('SELECT * FROM products ORDER BY RANDOM() LIMIT 4').all();
     },
 
     // Detalle del Carrito
@@ -66,8 +83,7 @@ const productsService = {
         }).filter(item => item !== null);
     },
 
-
-    //  crea un    nuevo producto
+    // Crea un nuevo producto
     create: (productData) => {
         const query = `
             INSERT INTO products (name, description, price, image, category, stock)
@@ -101,7 +117,7 @@ const productsService = {
         );
     },
 
-    // borra un producto
+    // Borra un producto
     delete: (id) => {
         return db.prepare('DELETE FROM products WHERE id = ?').run(id);
     }

@@ -1,6 +1,8 @@
 const productModel = require("../models/productModel");
 
 const mainController = {
+
+    // PÁGINA PRINCIPAL
     index: (req, res) => {
         const products = productModel.findAll();
 
@@ -9,18 +11,26 @@ const mainController = {
             .sort(() => Math.random() - 0.4)
             .slice(0, 4);
 
-        // 10 productos más pedidos (flag o aleatorios)
+        // Productos más pedidos (flag isPopular o aleatorios)
         const popularProducts = products.filter(p => p.isPopular).slice(0, 8);
-
-        // Si no hay flag en el JSON, se eligen 10 aleatorios
-        const finalPopular = popularProducts.length > 0 
-            ? popularProducts 
+        const finalPopular = popularProducts.length > 0
+            ? popularProducts
             : products.sort(() => Math.random() - 0.4).slice(0, 8);
 
         res.render("pages/index", {
             suggestedProducts,
             popularProducts: finalPopular
         });
+    },
+
+    // PÁGINA DE LOGIN - Sprint 1 US4
+    login: (req, res) => {
+        res.render("pages/login");
+    },
+
+    // PÁGINA DE REGISTRO - Sprint 1 US3
+    register: (req, res) => {
+        res.render("pages/register");
     }
 };
 

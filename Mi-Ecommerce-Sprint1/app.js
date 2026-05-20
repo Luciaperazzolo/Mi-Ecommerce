@@ -1,13 +1,18 @@
 //--- IMPORTACIÓN DE MÓDULOS ---
 require('./src/db/database'); // Importamos la configuración de la base de datos 
 const express = require("express"); //Traigo la herramienta Express
+const expressLayouts = require('express-ejs-layouts'); // <-- 1. TRAIGO LA LIBRERÍA DE LAYOUTS
 const session = require('express-session'); //Traigo el módulo de sesiones para manejar el carrito de compras
 const path = require("path"); //Módulo nativo para trabajar con rutas de carpetas
 const app = express(); //Pongo Express en funcionamiento
 
 //--- CONFIGURACIÓN DE VISTAS Y ESTÁTICOS --- 
 app.set("view engine", "ejs"); // Indico que usaré EJS como motor de plantillas
-app.set("views", path.join(__dirname, "src", "views")); // CORRECCIÓN: Le digo dónde están guardadas las vistas (dentro de src)
+app.set("views", path.join(__dirname, "src", "views")); // Le digo dónde están guardadas las vistas
+
+app.use(expressLayouts); // <-- 2. ACTIVO LA LIBRERÍA
+app.set('layout', 'layouts/main'); // <-- 3. LE DIGO QUE EL MOLDE PRINCIPAL ES EL DE TU COMPAÑERO
+
 app.use(express.static(path.join(__dirname, "assets"))); // Habilito la carpeta assets para usar CSS, imágenes y archivos públicos
 
 //--- MIDDLEWARES ---
@@ -15,7 +20,7 @@ app.use(express.urlencoded({ extended: true })); //prepara el proyecto para: log
 app.use(express.json()); //Permite recibir datos en formato JSON
 
 //--- CONFIGURACIÓN DE SESIONES ---
-app.use(session({ //Configura el middleware de sesiones para manejar el carrito de compras. Esto permite almacenar información del carrito en la sesión del usuario, lo que es útil para mantener el estado del carrito mientras el usuario navega por el sitio.
+app.use(session({ 
     secret: 'claveUltraSecreta_carrito',
     resave: false,
     saveUninitialized: false
@@ -34,14 +39,20 @@ const mainRoutes = require("./src/routes/mainRoutes"); //Traigo las rutas princi
 const cartRoutes = require("./src/routes/cartRoute"); //Traigo las rutas del carrito desde la carpeta routes
 const productsRouter = require("./src/routes/productsRouter"); // Rutas de productos
 
-//--- DEFINICIÓN DE RUTAS --- //User Story #1 (Sprint 2) – Reordenar Proyecto
+//--- DEFINICIÓN DE RUTAS --- 
 app.use("/", mainRoutes);  
 app.use("/cart", cartRoutes);
-app.use("/products", productsRouter); //   rutas de productos
+app.use("/products", productsRouter); // rutas de productos
 
 //--- ERROR 404 ---
 app.use((req, res) => {
     res.status(404).render("pages/404");
+});
+
+//--- ERROR 500 ---
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).render('pages/500');
 });
 
 //--- PUESTA EN MARCHA ---

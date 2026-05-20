@@ -1,10 +1,4 @@
-<%- include('../partials/header') %>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="/CSS/header.css">
-<link rel="stylesheet" href="/CSS/footer.css">
 <link rel="stylesheet" href="/CSS/product.css">
-
 
 <main class="contenedor-detalle">
     <nav class="breadcrumb">
@@ -14,7 +8,6 @@
     <section class="producto-principal">
         <div class="galeria-fotos">
             
-            <!-- para que el cartelito se ubique bien -->
             <div class="foto-grande" style="position: relative;">
                 <% if (product.stock === 0) { %>
                     <div class="badge-sin-stock">SIN STOCK</div>
@@ -32,13 +25,11 @@
                 <span class="label-puntos">PUNTOS</span>
             </div>
             
-            <!-- Botón deshabilitado y con texto cambiado si no hay stock -->
             <form action="/cart/add/<%= product.id %>" method="POST">
                 <button type="submit" class="btn-agregar" <%= product.stock === 0 ? 'disabled' : '' %>>
                     <%= product.stock === 0 ? 'SIN STOCK' : 'Agregar al Carrito' %>
                  </button>
             </form>
-
 
             <div class="texto-descripcion">
                 <p><%= product.description %></p>
@@ -52,7 +43,6 @@
             
             <% relatedProducts.forEach(similar => { %>
                 <article class="tarjeta-chica" style="position: relative;">
-                    <!-- Lógica de stock para los relacionados también -->
                     <% if (similar.stock === 0) { %>
                         <div class="badge-sin-stock-chico">SIN STOCK</div>
                     <% } %>
@@ -78,7 +68,6 @@
         </div>
     </section>
 
-    <!--  barra de categorías  -->
     <section class="barra-categorias-oscura">
         <div class="item-cat">
             <a href="/products/category/Electronica" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center;">
@@ -130,5 +119,3 @@
         </div>
     </section>
 </main>
-
-<%- include('../partials/footer') %>
