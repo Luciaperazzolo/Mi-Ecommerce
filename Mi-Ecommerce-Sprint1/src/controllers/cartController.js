@@ -1,4 +1,4 @@
-const productModel = require('../models/productModel');
+const productsService = require('../services/productsService');
 const cartService = require('../services/cartService');
 
 // VER CARRITO
@@ -6,7 +6,7 @@ exports.index = (req, res) => {
     const cartSession = cartService.getCart(req);
 
     const detailedCart = cartSession.map(item => {
-        const productDetail = productModel.findById(item.productId);
+        const productDetail = productsService.getById(item.productId);
         if (!productDetail) return null;
         return {
             id: productDetail.id,
@@ -27,7 +27,7 @@ exports.index = (req, res) => {
 exports.getCheckout = (req, res) => {
     const cartSession = cartService.getCart(req);
     const detailedCart = cartSession.map(item => {
-        const product = productModel.findById(item.productId);
+        const product = productsService.getById(item.productId);
         return { ...product, quantity: item.quantity, subtotal: product.price * item.quantity };
     });
     const total = cartService.calculateTotal(req);
@@ -38,7 +38,7 @@ exports.getCheckout = (req, res) => {
 // AGREGAR PRODUCTO AL CARRITO (VALIDANDO STOCK)
 exports.addToCart = (req, res) => {
     const productId = parseInt(req.params.id);
-    const product = productModel.findById(productId);
+    const product = productsService.getById(productId);
     if (!product) return res.redirect('/');
 
     const stockDisponible = product.stock !== undefined ? product.stock : 5;

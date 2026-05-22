@@ -1,4 +1,4 @@
-const productModel = require('../models/productModel');
+const productsService = require('../services/productsService');
 
 const cartService = {
     getCart: (req) => req.session.cart || [],
@@ -21,7 +21,7 @@ const cartService = {
 
         if (item) {
             if (action === 'increase') {
-                const product = productModel.findById(productId);
+                const product = productsService.getById(productId);
                 const stockDisponible = product && product.stock !== undefined ? product.stock : 5;
                 if (item.quantity + 1 > stockDisponible) return false;
                 item.quantity++;
@@ -44,7 +44,7 @@ const cartService = {
     calculateTotal: (req) => {
         const cart = req.session.cart || [];
         return cart.reduce((acc, item) => {
-            const product = productModel.findById(item.productId);
+            const product = productsService.getById(item.productId);
             return acc + (product ? product.price * item.quantity : 0);
         }, 0);
     }

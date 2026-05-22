@@ -1,7 +1,7 @@
 //--- IMPORTACIÓN DE MÓDULOS ---
 require('./src/db/database'); // Importamos la configuración de la base de datos 
 const express = require("express"); //Traigo la herramienta Express
-const expressLayouts = require('express-ejs-layouts'); // <-- 1. TRAIGO LA LIBRERÍA DE LAYOUTS
+const expressLayouts = require('express-ejs-layouts'); // <-- TRAIGO LA LIBRERÍA DE LAYOUTS
 const session = require('express-session'); //Traigo el módulo de sesiones para manejar el carrito de compras
 const path = require("path"); //Módulo nativo para trabajar con rutas de carpetas
 const app = express(); //Pongo Express en funcionamiento
@@ -10,8 +10,8 @@ const app = express(); //Pongo Express en funcionamiento
 app.set("view engine", "ejs"); // Indico que usaré EJS como motor de plantillas
 app.set("views", path.join(__dirname, "src", "views")); // Le digo dónde están guardadas las vistas
 
-app.use(expressLayouts); // <-- 2. ACTIVO LA LIBRERÍA
-app.set('layout', 'layouts/main'); // <-- 3. LE DIGO QUE EL MOLDE PRINCIPAL ES EL DE TU COMPAÑERO
+app.use(expressLayouts); // <-- ACTIVO LA LIBRERÍA
+app.set('layout', 'layouts/main'); // <-- LE DIGO QUE EL MOLDE PRINCIPAL ES EL DE TU COMPAÑERO
 
 app.use(express.static(path.join(__dirname, "assets"))); // Habilito la carpeta assets para usar CSS, imágenes y archivos públicos
 

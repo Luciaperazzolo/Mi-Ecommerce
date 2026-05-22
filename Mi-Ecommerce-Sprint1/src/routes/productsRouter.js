@@ -17,7 +17,4 @@ router.get('/create', productsController.crearForm);
 // URL: localhost:3000/products/1
 router.get('/:id', productsController.detalle);
 
-// Ruta para confirmar la compra.
-router.post('/confirm', productsController.confirm);
-
 module.exports = router;

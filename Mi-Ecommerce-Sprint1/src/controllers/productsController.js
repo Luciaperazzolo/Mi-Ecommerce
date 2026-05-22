@@ -1,5 +1,4 @@
 const productsService = require('../services/productsService');
-const cartService = require('../services/cartService'); 
 
 const productsController = {
     // Muestra todos los productos juntos (soporta ordenamiento por precio ?sort=asc o ?sort=desc)
@@ -48,24 +47,6 @@ const productsController = {
         res.render('pages/productsCategory', { 
             products: filtrados, 
             categoryName: nombreCategoria 
-        });
-    },
-
-    // Muestra el formulario de confirmación de pedido
-    confirm: (req, res) => {
-        const { nombre, direccion, metodoPago } = req.body;
-        const cartSession = req.session.cart || [];
-        
-    
-        const detailedCart = productsService.getDetailedCart(cartSession);
-        const total = detailedCart.reduce((acc, item) => acc + item.subtotal, 0);
-
-        res.render('pages/confirm', {
-            nombre,
-            direccion,
-            metodoPago,
-            cart: detailedCart,
-            total
         });
     },
 

@@ -1,21 +1,21 @@
-const productModel = require("../models/productModel");
+const productsService = require('../services/productsService');
 
 const mainController = {
 
     // PÁGINA PRINCIPAL
     index: (req, res) => {
-        const products = productModel.findAll();
+        const productos = productsService.getAll();
 
         // 4 productos sugeridos (aleatorios)
-        const suggestedProducts = products
+        const suggestedProducts = productos
             .sort(() => Math.random() - 0.4)
             .slice(0, 4);
 
         // Productos más pedidos (flag isPopular o aleatorios)
-        const popularProducts = products.filter(p => p.isPopular).slice(0, 8);
+        const popularProducts = productos.filter(p => p.isPopular).slice(0, 8);
         const finalPopular = popularProducts.length > 0
             ? popularProducts
-            : products.sort(() => Math.random() - 0.4).slice(0, 8);
+            : productos.sort(() => Math.random() - 0.4).slice(0, 8);
 
         res.render("pages/index", {
             suggestedProducts,

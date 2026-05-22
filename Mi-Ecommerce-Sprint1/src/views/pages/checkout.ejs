@@ -13,8 +13,7 @@
     </head>
 
    <body>
-    <%- include('../partials/header') %>
-
+    
     <main class="content-wrapper"> <!--Contenido principal de la página -->
         <div class="checkout-container"> <!--Contenedor general del checkout-->
             <h1>Finalizar Compra</h1>
@@ -23,7 +22,7 @@
                 <section class="checkout-form"> <!--Agrupa contenido relacionado, en este caso el formulario de checkout-->
                     <!--Define a qué ruta se enviarán los datos cuando el usuario haga clic en el botón-->
                     <!--POST envía la información de forma "invisible" y segura al servidor para crear el pedido-->
-                    <form action="/confirm" method="POST">
+                   <form action="/cart/confirm" method="POST">
                         <h3>Datos de Envío</h3>
                         <div class="form-group">
                             <label for="nombre">Nombre Completo</label> <!--Describe el input--> 
@@ -57,6 +56,5 @@
         </div> 
     </main>
 
-    <%- include('../partials/footer') %>
 </body>
 </html>
