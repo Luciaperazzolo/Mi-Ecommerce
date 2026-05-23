@@ -26,11 +26,12 @@ app.use(session({
     saveUninitialized: false
 }));
 
-//--- MIDDLEWARE PARA CONTAR LOS ARTÍCULOS EN EL CARRITO ---
+//--- MIDDLEWARE PARA CONTAR LOS ARTÍCULOS EN EL CARRITO Y USUARIO EN SESIÓN ---
 app.use((req, res, next) => {
     const cartSession = req.session.cart || [];
     const cartCount = cartSession.reduce((acc, item) => acc + item.quantity, 0);
     res.locals.cartCount = cartCount;
+    res.locals.user = req.session.user || null;
     next();
 });
 

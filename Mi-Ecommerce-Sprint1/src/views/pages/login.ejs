@@ -11,6 +11,14 @@
     <main>
         <h2>Iniciar Sesión</h2>
 
+        <% if (typeof error !== 'undefined' && error) { %>
+            <p style="color: #e63946; text-align: center; margin-bottom: 10px;"><%= error %></p>
+        <% } %>
+
+        <% if (typeof query !== 'undefined' && query.registered) { %>
+            <p style="color: green; text-align: center; margin-bottom: 10px;">¡Registro exitoso! Ya podés iniciar sesión.</p>
+        <% } %>
+
         <form action="/login" method="POST">
 
             <label for="email">Email</label>
