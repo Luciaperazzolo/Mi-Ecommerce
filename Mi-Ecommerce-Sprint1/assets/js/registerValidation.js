@@ -107,16 +107,11 @@ window.addEventListener("load", () => {
         }
 
         // EVITAR SUBMIT SIEMPRE
-        e.preventDefault();
-
         if(errors){
-
-            console.log("Formulario con errores");
-
-        } else {
-
-            alert("Registro validado correctamente");
-        }
+    e.preventDefault();
+    console.log("Formulario con errores");
+}
+// Si no hay errores, el formulario se envía normalmente al servidor
 
     });
 

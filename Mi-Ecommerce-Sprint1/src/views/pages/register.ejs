@@ -11,6 +11,10 @@
     <main>
         <h2>Registro</h2>
 
+        <% if (typeof error !== 'undefined' && error) { %>
+            <p style="color: #e63946; text-align: center; margin-bottom: 10px;"><%= error %></p>
+        <% } %>
+
         <form id="registerForm" action="/register" method="POST" novalidate>
 
             <label for="name">Nombre</label>
