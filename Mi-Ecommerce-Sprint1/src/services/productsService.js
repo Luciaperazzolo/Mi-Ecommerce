@@ -117,6 +117,12 @@ const productsService = {
         );
     },
 
+    // Cuenta la cantidad total de productos
+    count() {
+        const result = db.prepare("SELECT COUNT(*) AS total FROM products").get();
+        return result.total;
+    },
+
     // Borra un producto
     delete: (id) => {
         return db.prepare('DELETE FROM products WHERE id = ?').run(id);

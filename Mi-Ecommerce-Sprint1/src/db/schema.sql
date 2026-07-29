@@ -4,6 +4,11 @@ CREATE TABLE IF NOT EXISTS categories (
     name TEXT NOT NULL UNIQUE
 );
 
+INSERT OR IGNORE INTO categories (name) VALUES
+('Bebidas'),
+('Alimentos'),
+('Electronica');
+
 -- Tabla de Productos
 CREATE TABLE IF NOT EXISTS products (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

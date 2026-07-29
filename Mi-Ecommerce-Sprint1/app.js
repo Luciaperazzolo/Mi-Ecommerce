@@ -3,6 +3,7 @@ require('./src/db/database'); // Importamos la configuración de la base de dato
 const express = require("express"); //Traigo la herramienta Express
 const expressLayouts = require('express-ejs-layouts'); // <-- TRAIGO LA LIBRERÍA DE LAYOUTS
 const session = require('express-session'); //Traigo el módulo de sesiones para manejar el carrito de compras
+const cors = require("cors"); //Permite que el servidor acepte solicitudes de diferentes dominios
 const path = require("path"); //Módulo nativo para trabajar con rutas de carpetas
 const app = express(); //Pongo Express en funcionamiento
 
@@ -16,6 +17,7 @@ app.set('layout', 'layouts/main'); // <-- LE DIGO QUE EL MOLDE PRINCIPAL ES EL D
 app.use(express.static(path.join(__dirname, "assets"))); // Habilito la carpeta assets para usar CSS, imágenes y archivos públicos
 
 //--- MIDDLEWARES ---
+app.use(cors());
 app.use(express.urlencoded({ extended: true })); //prepara el proyecto para: login, register, carrito
 app.use(express.json()); //Permite recibir datos en formato JSON
 
@@ -39,11 +41,17 @@ app.use((req, res, next) => {
 const mainRoutes = require("./src/routes/mainRoutes"); //Traigo las rutas principales desde la carpeta routes
 const cartRoutes = require("./src/routes/cartRoute"); //Traigo las rutas del carrito desde la carpeta routes
 const productsRouter = require("./src/routes/productsRouter"); // Rutas de productos
+const productsApiRoutes = require("./src/routes/api/productsApiRoutes"); // Rutas de productos para la API
+const categoriesApiRoutes = require("./src/routes/api/categoriesApiRoutes");
+const statsApiRoutes = require("./src/routes/api/statsApiRoutes");
 
 //--- DEFINICIÓN DE RUTAS --- 
 app.use("/", mainRoutes);  
 app.use("/cart", cartRoutes);
 app.use("/products", productsRouter); // rutas de productos
+app.use("/api/products", productsApiRoutes); // rutas de productos para la API
+app.use("/api/categories", categoriesApiRoutes); // rutas de categorías para la API
+app.use("/api/stats", statsApiRoutes); // rutas de estadísticas para la API
 
 //--- ERROR 404 ---
 app.use((req, res) => {
